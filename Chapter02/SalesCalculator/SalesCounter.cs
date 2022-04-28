@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,29 @@ namespace SalesCalculator {
         private List<Sale> _sales;//csvファイルから読み込んだデータ
 
         //コンストラクタ
-        public SalesCounter(List<Sale> sales) {
-            _sales = sales;
+        public SalesCounter(String filePath) {
+            _sales = ReadSales(filePath);
+            
+        }
+
+        //売上データを読み込み、Saleオブジェクトのリストを返す
+        private static List<Sale> ReadSales(String filePath) {
+            List<Sale> sales = new List<Sale>();
+            String[] lines = File.ReadAllLines(filePath);
+            foreach (String line in lines) {
+                String[] items = line.Split(',');
+                Sale sale = new Sale {//p105 オブジェクトの初期化
+                    ShopName = items[0],
+                    ProductCategory = items[1],
+                    Amount = int.Parse(items[2])
+                };
+                sales.Add(sale);
+            }
+            return sales;
         }
 
         //店舗別売り上げを求める
-        public Dictionary<String, int> GetPerStpreSales() {
+        public Dictionary<String, int> GetPerStoreSales() {
             Dictionary<String, int> dict = new Dictionary<String, int>();
             foreach (Sale sale in _sales) {
                 if (dict.ContainsKey(sale.ShopName))
