@@ -28,11 +28,11 @@ namespace Exercise {
             //        song.ArtistName, song.Length / 60, song.Length % 60); 
             //}
             foreach (var song in songs) {
-                Console.WriteLine("{0} {1} {2}", song.Title,
-                    song.ArtistName, new TimeSpan(0, song.Length / 60, song.Length % 60).ToString());
-                    };
+                Console.WriteLine("{0} {1} {2:m\\:ss}", song.Title,
+                    song.ArtistName,TimeSpan.FromSeconds(song.Length));
+            };
 
             //ゼロ埋め、書式設定、ゼロサプレス
         }
-    }
+        }
 }
