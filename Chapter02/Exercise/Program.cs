@@ -23,9 +23,9 @@ namespace Exercise {
         }
         //2.1.4
         private static void PrintSongs(Song[] songs) {
-            for (int i = 0; i < songs.Length; i++) {
-                Console.WriteLine("{0} {1} {2}:{3:d2}", songs[i].Title,
-                    songs[i].ArtistName, songs[i].Length / 60, songs[i].Length % 60); 
+            foreach (var song in songs) {
+                Console.WriteLine("{0} {1} {2}:{3:d2}", song.Title,
+                    song.ArtistName, song.Length / 60, song.Length % 60); 
             }
             //ゼロ埋め、書式設定、ゼロサプレス
         }
