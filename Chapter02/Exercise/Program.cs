@@ -8,10 +8,17 @@ namespace Exercise {
     class Program {
         static void Main(string[] args) {
             var songs = new Song[] {
-                new Song("a", "aa", 246)
-                ,new Song("b", "bb", 241)
-                ,new Song("c", "cc", 240)
+                new Song("a", "aa", 246),
+                new Song("b", "bb", 241),
+                new Song("c", "cc", 240)
             };
+            /*Listバージョン
+             * List<song> songs = new List<Song>();
+             * var song1 = new Song("a", "aa", 246);
+             * var song2 = new Song("a", "aa", 246);
+             * var song3 = new Song("a", "aa", 246);
+             * songs.Add();
+             */
             PrintSongs(songs);
         }
         //2.1.4
