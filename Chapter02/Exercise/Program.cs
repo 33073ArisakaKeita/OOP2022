@@ -22,7 +22,7 @@ namespace Exercise {
             PrintSongs(songs);
         }
         //2.1.4
-        private static void PrintSongs(Song[] songs) {
+        private static void PrintSongs(IEnumerable<Song> songs) {
             //foreach (var song in songs) {
             //    Console.WriteLine("{0} {1} {2}:{3:d2}", song.Title,
             //        song.ArtistName, song.Length / 60, song.Length % 60); 
