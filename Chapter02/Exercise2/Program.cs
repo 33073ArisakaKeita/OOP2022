@@ -11,7 +11,7 @@ namespace Exercise2 {
                 // インチからメートルへの対応表を出力
                 PrintInchToMeterList(1, 10);
             }
-            else {
+            else if(args.Length >= 1 && args[0] == "-toi") {
                 // メートルからインチへの対応表を出力
                 PrintMeterToInchList(1, 10);
             }
