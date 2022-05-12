@@ -8,9 +8,9 @@ namespace Exercise {
     class Program {
         static void Main(string[] args) {
             var songs = new Song[] {
-                new Song("a", "aa", 246),
-                new Song("b", "bb", 241),
-                new Song("c", "cc", 240)
+                new Song("曲1", "歌手1", 246),
+                new Song("曲2", "歌手2", 241),
+                new Song("曲3", "歌手3", 240)
             };
             /*Listバージョン
              * List<song> songs = new List<Song>();
