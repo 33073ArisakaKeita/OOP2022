@@ -7,34 +7,32 @@ using System.Threading.Tasks;
 namespace Exercise3 {
     class Program {
         static void Main(string[] args) {
-            Console.WriteLine("売上高の表示選択");
-            Console.WriteLine("1.店舗別");
-            Console.WriteLine("2.商品カテゴリー別");
+            int select = 0;
+            var sales = new SalesCounter("sales.csv");
+            IDictionary<String, int> amountPerStore = null;
 
-            int i = int.Parse(Console.ReadLine());
+            while (true) {
+                Console.WriteLine("売上高の表示選択(終了は999)");
+                Console.WriteLine("1.店舗別");
+                Console.WriteLine("2.商品カテゴリー別");
+                Console.Write(">");
+                select = int.Parse(Console.ReadLine());
 
-            if (i == 1) {
-                PrintStoreSales();
+                switch (select) {
+                    case 1:
+                        OutPut(sales.GetPerStoreSales());
+                        break;
+                    case 2:
+                        OutPut(sales.GetPerProductSales());
+                        break;
+                    case 999:
+                        return;
+                }
             }
-            else if (i == 2) {
-                PrintProductSales();
-            }            
         }
 
-        //店舗別　表示メソッド
-        private static void PrintStoreSales() {
-            var sales = new SalesCounter("sales.csv");
-            var amountPerStore = sales.GetPerStoreSales();
+        private static void OutPut(IDictionary<string, int> amountPerStore) {
             foreach (var obj in amountPerStore) {
-                Console.WriteLine("{0}{1}", obj.Key, obj.Value);
-            }
-        }
-
-        //商品別　表示メソッド
-        private static void PrintProductSales() {
-            var sales = new SalesCounter("sales.csv");
-            var amountPerProduct = sales.GetPerProductSales();
-            foreach (var obj in amountPerProduct) {
                 Console.WriteLine("{0}{1}", obj.Key, obj.Value);
             }
         }
