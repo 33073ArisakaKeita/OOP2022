@@ -43,7 +43,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> names) {
-            throw new NotImplementedException();
+            var a = names.Where(s => s.First() == 'B')
+                         .Select(s => s.Length);
+            foreach (var b in a)
+                Console.WriteLine(b);
         }
     }
 }
