@@ -26,8 +26,8 @@ namespace Exercise02 {
                 var line = Console.ReadLine();
                 if (string.IsNullOrEmpty(line))
                     break;
-                int result = names.FindIndex(s => s == line);
-                Console.WriteLine(result);
+                var index = names.FindIndex(s => s == line);
+                Console.WriteLine(index);
             } while (true);
         }
 
