@@ -32,21 +32,22 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<string> names) {
-            int count = names.Count(s => s.Contains("o"));
+            var count = names.Count(s => s.Contains('o'));
             Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<string> names) {
-            var array = names.Where(s => s.Contains("o"));
-            foreach (String s in array)
-                Console.WriteLine(s);
+            var array = names.Where(s => s.Contains('o')).ToArray();//配列に変換
+            foreach (var name in array)
+                Console.WriteLine(name);
         }
 
         private static void Exercise2_4(List<string> names) {
-            var a = names.Where(s => s.First() == 'B')
-                         .Select(s => s.Length);
+            var a = names.Where(s => s.StartsWith("B"))
+                         //.Select(s => s+":"+s.Length);
+                         .Select(s => new { s.Length, s });
             foreach (var b in a)
-                Console.WriteLine(b);
+                Console.WriteLine(b.Length+":"+b.s);
         }
     }
 }
