@@ -28,9 +28,20 @@ namespace Exercise02 {
             //4.2.5
             Exercise2_5(ymCollection);
             Console.WriteLine("-----");
+
+            //4.2.5を降順にしたい場合
+            Exercise2_6(ymCollection);
         }
+
+        private static void Exercise2_6(YearMonth[] ymCollection) {
+            foreach (var ym in ymCollection.OrderByDescending(ym => ym.Year)) {
+                Console.WriteLine(ym);
+            }
+            
+        }
+
         //4.2.3
-            static YearMonth FindFirst21C(YearMonth[] yms) {
+        static YearMonth FindFirst21C(YearMonth[] yms) {
             foreach (var ym in yms) {
                 if (ym.Is21Century) {
                     return ym;
@@ -54,13 +65,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_5(YearMonth[] ymCollection) {
-            var nextMonth = new YearMonth[ymCollection.Length];
-            int i = 0;
-            foreach(var ym in ymCollection) {
-                nextMonth[i] = ym.AddOneMonth();
-                i++;
+            var array = ymCollection.Select(ym => ym.AddOneMonth());
+            foreach(var ym in array) {
+                Console.WriteLine(ym);
             }
-            Exercise2_2(nextMonth);
         }
     }
 }
