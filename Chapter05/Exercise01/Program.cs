@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     class Program {
         static void Main(string[] args) {
-            //Exercise01();
+            Exercise01();
             Console.WriteLine("--------------------");
 
             Exercise02();
-            Console.WriteLine("--------------------");
-
-            Exercise03();
-            Console.WriteLine("--------------------");
-
-            Exercise04();
             Console.WriteLine("--------------------");
         }
 
