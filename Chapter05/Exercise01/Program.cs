@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     class Program {
         static void Main(string[] args) {
-            Exercise01();
+            //Exercise01();
             Console.WriteLine("--------------------");
 
-            //Exercise02();
+            Exercise02();
             Console.WriteLine("--------------------");
 
             Exercise03();
@@ -32,11 +32,16 @@ namespace Exercise01 {
                 Console.WriteLine("二つの文字列は等しくない");
         }
 
-        //private static void Exercise02() {
-        //    var num = int.TryParse(Console.ReadLine(),out int result);
-        //    var s1 = string.Format("{0,10:#,0}", num);
-        //    Console.WriteLine(s1);
-        //}
+        private static void Exercise02() {
+            var num = Console.ReadLine();
+            if (int.TryParse(num, out int result)) {//resultには変換された値が入っている。
+                Console.WriteLine(string.Format("{0,10:#,0}",result));
+            }
+            else {
+                Console.WriteLine("変換に失敗");
+            }
+            
+        }
 
         private static void Exercise03() {
             throw new NotImplementedException();
