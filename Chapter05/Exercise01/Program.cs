@@ -27,9 +27,10 @@ namespace Exercise01 {
         }
 
         private static void Exercise02() {
-            var num = Console.ReadLine();
-            if (int.TryParse(num, out int result)) {//resultには変換された値が入っている。
-                Console.WriteLine(string.Format("{0,10:#,0}",result));
+            var line = Console.ReadLine();
+            if (int.TryParse(line, out int result)) {//resultには変換された値が入っている。
+                //Console.WriteLine(string.Format("{0,10:#,0}",result));
+                Console.WriteLine("{0:#,#}", result);
             }
             else {
                 Console.WriteLine("変換に失敗");
