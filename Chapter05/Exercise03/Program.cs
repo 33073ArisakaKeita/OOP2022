@@ -58,12 +58,10 @@ namespace Exercise03 {
             string[] words = text.Split(' ');
             var sb = new StringBuilder();
             foreach(var word in words){
-                sb.Append(word);
                 sb.Append(" ");
+                sb.Append(word);
             }
-            if (sb.Length != 0)
-                sb.Length -= 1; //末尾を一文字削除
-            var sbtext = sb.ToString();
+            var sbtext = sb.ToString().TrimStart();
             Console.WriteLine(sbtext);
         }
     }
