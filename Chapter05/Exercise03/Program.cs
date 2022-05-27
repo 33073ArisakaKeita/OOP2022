@@ -27,7 +27,7 @@ namespace Exercise03 {
 
         private static void Exercise3_1(string text) {
             var count = text.Count(c => c == ' ');
-            Console.WriteLine("空欄の数は{0}個", count);
+            Console.WriteLine("空欄数:{0}", count);
 
             //foreach(var c in text) {
             //    if(c == ' ') {
@@ -43,15 +43,13 @@ namespace Exercise03 {
 
         private static void Exercise3_3(string text) {
             string[] words = text.Split(' ');
-            Console.WriteLine("テキストに含まれる単語数は{0}個", words.Length);  
+            Console.WriteLine("単語数:{0}", words.Length);  
         }
 
         private static void Exercise3_4(string text) {
-            string[] words = text.Split(' ');
-            Console.WriteLine("四文字以下の単語は");
-            var a = words.Where(s => s.Length <= 4);
-            foreach (var b in a)
-                Console.WriteLine(b);
+            Console.WriteLine("四文字以下の単語");
+            text.Split(' ').Where(word => word.Length <= 4)
+                                       .ToList().ForEach(word =>Console.WriteLine(word));
         }
 
         private static void Exercise3_5(string text) {
