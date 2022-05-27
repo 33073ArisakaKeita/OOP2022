@@ -25,7 +25,7 @@ namespace Exercise03 {
             Console.WriteLine("---------------");
         }
 
-        private static void Exercise3_1(String text) {
+        private static void Exercise3_1(string text) {
             var count = text.Count(c => c == ' ');
             Console.WriteLine("空欄の数は{0}個", count);
 
@@ -36,22 +36,35 @@ namespace Exercise03 {
             //}
         }
 
-        private static void Exercise3_2(String text) {
+        private static void Exercise3_2(string text) {
             var replaced = text.Replace("big", "small");
             Console.WriteLine(replaced);
         }
 
-        private static void Exercise3_3(String text) {
-            String[] words = text.Split(' ');
-            Console.WriteLine("テキストに含まれる単語数は{0}個", words.Length);
+        private static void Exercise3_3(string text) {
+            string[] words = text.Split(' ');
+            Console.WriteLine("テキストに含まれる単語数は{0}個", words.Length);  
         }
 
-        private static void Exercise3_4(String text) {
-            
+        private static void Exercise3_4(string text) {
+            string[] words = text.Split(' ');
+            Console.WriteLine("四文字以下の単語は");
+            var a = words.Where(s => s.Length <= 4);
+            foreach (var b in a)
+                Console.WriteLine(b);
         }
 
-        private static void Exercise3_5(String text) {
-            throw new NotImplementedException();
+        private static void Exercise3_5(string text) {
+            string[] words = text.Split(' ');
+            var sb = new StringBuilder();
+            foreach(var word in words){
+                sb.Append(word);
+                sb.Append(" ");
+            }
+            if (sb.Length != 0)
+                sb.Length -= 1; //末尾を一文字削除
+            var sbtext = sb.ToString();
+            Console.WriteLine(sbtext);
         }
     }
 }
