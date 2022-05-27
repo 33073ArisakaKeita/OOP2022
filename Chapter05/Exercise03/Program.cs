@@ -26,8 +26,7 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1(String text) {
-            var count = text.Where(c => c == ' ')
-                            .Count();
+            var count = text.Count(c => c == ' ');
             Console.WriteLine("空欄の数は{0}個", count);
 
             //foreach(var c in text) {
