@@ -30,23 +30,22 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(int[] numbers) {
-            var results = numbers.Reverse()
-                                 .Take(2)
-                                 .ToList();
-            results.ForEach(Console.WriteLine);
+            var results = numbers.Skip(numbers.Length - 2);
+            foreach(var a in results)
+                Console.WriteLine(a);
         }
 
         private static void Exercise1_3(int[] numbers) {
-            var str = numbers.Select(n => n.ToString())
-                             .ToList();
-            str.ForEach(Console.WriteLine);
+            var str = numbers.Select(n => n.ToString());
+            foreach (var a in str)
+                Console.WriteLine(a);
         }
 
         private static void Exercise1_4(int[] numbers) {
             var min = numbers.OrderBy(n => n)
-                             .Take(3)
-                             .ToList();
-            min.ForEach(Console.WriteLine);
+                             .Take(3);
+            foreach (var a in min)
+                Console.WriteLine(a);
         }
 
         private static void Exercise1_5(int[] numbers) {
