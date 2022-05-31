@@ -8,11 +8,10 @@ namespace Exercise04 {
     class Program {
         static void Main(string[] args) {
             var text = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
-            string[] words = text.Split(';');
-            
-            foreach(var a in words) {
-                string[] b = a.Split('=');
-                Console.WriteLine("{0}:{1}",ToJapanese(b[0]),b[1]);
+
+            foreach (var item in text.Split(';')) {
+                var array = item.Split('=');
+                Console.WriteLine("{0}:{1}",ToJapanese(array[0]),array[1]);
             }
             
         }
