@@ -38,7 +38,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
-            foreach (var book in books.Where(s => s.Title.Contains("C#プログラミングの新常識")))
+            foreach (var book in books.Where(s => s.Title.Contains("ワンダフル・C#ライフ")))
                 Console.WriteLine("{0} 価格:{1} ページ数:{2}",book.Title,book.Price,book.Pages);
         }
 
@@ -48,7 +48,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_3(List<Book> books) {
-
+            var result = books.Select(s => s.Title.Contains("C#"));
+            //var average = result.Average(n => n.Price);
         }
 
         private static void Exercise2_4(List<Book> books) {
