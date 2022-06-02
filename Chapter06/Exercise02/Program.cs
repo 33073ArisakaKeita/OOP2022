@@ -38,7 +38,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
-            foreach (var book in books.Where(s => s.Title.Contains("ワンダフル・C#ライフ")))
+            foreach (var book in books.Where(s => s.Title.Equals("ワンダフル・C#ライフ")))
                 Console.WriteLine("{0} 価格:{1} ページ数:{2}",book.Title,book.Price,book.Pages);
         }
 
@@ -73,6 +73,11 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_7(List<Book> books) {
+            var results = books.Where(s => s.Title.Contains("C#"))
+                               .Where(s => s.Pages <= 500);
+            foreach(var book in results) {
+                Console.WriteLine(book.Title);
+            }
         }
     }
 }
