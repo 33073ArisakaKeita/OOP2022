@@ -35,46 +35,62 @@ namespace Exercise02 {
             Console.WriteLine("-----");
 
             Exercise2_7(books);
+            Console.WriteLine("-----");
+
+            Exercise2_8(books);
+            
+        }
+
+        private static void Exercise2_8(List<Book> books) {
+            int counter = 1;
+            foreach(var book in books) {
+                Console.WriteLine("{0}冊目:{1}", counter, book.Title);
+                counter += 1;
+            }
         }
 
         private static void Exercise2_1(List<Book> books) {
-            foreach (var book in books.Where(s => s.Title.Equals("ワンダフル・C#ライフ")))
-                Console.WriteLine("{0} 価格:{1} ページ数:{2}",book.Title,book.Price,book.Pages);
+            foreach (var book in books.Where(b => b.Title == "ワンダフル・C#ライフ"))
+                Console.WriteLine("価格:{0} ページ数:{1}", book.Price, book.Pages);
+            //var book = books.FirstOrDefault(b => b.Title == " ワンダフル・C#ライフ");
+            //    if (book != null)
+            //    Console.WriteLine("価格：{0}　ページ数：{1}",book.Price,book.Pages);
         }
 
         private static void Exercise2_2(List<Book> books) {
-            var count = books.Count(s => s.Title.Contains("C#"));
+            var count = books.Count(b => b.Title.Contains("C#"));
             Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<Book> books) {
-            var average = books.Where(s => s.Title.Contains("C#"))
-                               .Average(s => s.Pages);
+            var average = books.Where(b => b.Title.Contains("C#"))
+                               .Average(b => b.Pages);
             Console.WriteLine(average);
         }
 
         private static void Exercise2_4(List<Book> books) {
-            var result = books.FirstOrDefault(s => s.Price >= 4000);
-            Console.WriteLine(result.Title);
+            var result = books.FirstOrDefault(b => b.Price >= 4000);
+            if(result != null)
+                Console.WriteLine(result.Title);
         }
 
         private static void Exercise2_5(List<Book> books) {
-            var result = books.Where(s => s.Price < 4000)
-                              .Max(s => s.Pages);
+            var result = books.Where(b => b.Price < 4000)
+                              .Max(b => b.Pages);
             Console.WriteLine(result);
         }
 
         private static void Exercise2_6(List<Book> books) {
-            var results = books.Where(s => s.Pages >= 400)
-                               .OrderByDescending(s => s.Price);
+            var results = books.Where(b => b.Pages >= 400)
+                               .OrderByDescending(b => b.Price);
             foreach(var book in results) {
                 Console.WriteLine("{0}　{1}", book.Title, book.Price);
             }
         }
 
         private static void Exercise2_7(List<Book> books) {
-            var results = books.Where(s => s.Title.Contains("C#"))
-                               .Where(s => s.Pages <= 500);
+            var results = books.Where(b => b.Title.Contains("C#"))
+                               .Where(b => b.Pages <= 500);
             foreach(var book in results) {
                 Console.WriteLine(book.Title);
             }
