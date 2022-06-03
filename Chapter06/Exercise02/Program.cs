@@ -42,10 +42,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_8(List<Book> books) {
-            int counter = 1;
-            foreach(var book in books) {
-                Console.WriteLine("{0}冊目:{1}", counter, book.Title);
-                counter += 1;
+            foreach(var book in  books.Select((value,index) => new { value.Title, index})) {
+                Console.WriteLine("{0}冊目:{1}",book.index+1,book.Title);
             }
         }
 
@@ -89,9 +87,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_7(List<Book> books) {
-            var results = books.Where(b => b.Title.Contains("C#"))
-                               .Where(b => b.Pages <= 500);
-            foreach(var book in results) {
+            foreach(var book in books.Where(b => b.Title.Contains("C#") && b.Pages <= 500)) {
                 Console.WriteLine(book.Title);
             }
         }
