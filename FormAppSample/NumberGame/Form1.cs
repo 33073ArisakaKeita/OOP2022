@@ -27,21 +27,25 @@ namespace NumberGame {
             else if(Math.Abs(ans-Number.Value)<3){
                 textbox.Text = "惜しい!";
             }
-            else if ((ans - Number.Value) < 0){
+            else if (ans < Number.Value){
                 textbox.Text = "答えはもっと小さい!!!!!!!!!!!";
             }
-            else {
+            else if (ans > Number.Value){
                 textbox.Text = "答えはもっと大きい!!!!!!!!!!!";
             }
         }
  
         private void Form1_Load(object sender, EventArgs e) {
-            ans = rnd.Next(1, (int)maxNum.Value);
+            getRandom();
         }
 
         private void maxNum_ValueChanged(object sender, EventArgs e) {
+            getRandom();
+        }
+
+        private void getRandom() {
             ans = rnd.Next(1, (int)maxNum.Value);
-            tbans.Text = ans.ToString();
+            this.Text = ans.ToString();
         }
     }
 }
