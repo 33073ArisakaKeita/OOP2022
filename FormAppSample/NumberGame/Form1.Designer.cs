@@ -27,9 +27,10 @@ namespace NumberGame {
             this.label1 = new System.Windows.Forms.Label();
             this.Number = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.maxNum = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.textbox = new System.Windows.Forms.TextBox();
+            this.tbans = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Number)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxNum)).BeginInit();
             this.SuspendLayout();
@@ -39,7 +40,7 @@ namespace NumberGame {
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(207, 109);
+            this.label1.Location = new System.Drawing.Point(184, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 48);
             this.label1.TabIndex = 0;
@@ -48,7 +49,7 @@ namespace NumberGame {
             // Number
             // 
             this.Number.Font = new System.Drawing.Font("HG創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.Number.Location = new System.Drawing.Point(179, 242);
+            this.Number.Location = new System.Drawing.Point(183, 233);
             this.Number.Name = "Number";
             this.Number.Size = new System.Drawing.Size(168, 55);
             this.Number.TabIndex = 1;
@@ -66,20 +67,10 @@ namespace NumberGame {
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(104, 344);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 48);
-            this.label2.TabIndex = 0;
-            this.label2.Click += new System.EventHandler(this.label1_Click);
-            // 
             // maxNum
             // 
             this.maxNum.Font = new System.Drawing.Font("HG創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.maxNum.Location = new System.Drawing.Point(324, 102);
+            this.maxNum.Location = new System.Drawing.Point(314, 102);
             this.maxNum.Name = "maxNum";
             this.maxNum.Size = new System.Drawing.Size(168, 55);
             this.maxNum.TabIndex = 1;
@@ -101,6 +92,22 @@ namespace NumberGame {
             this.label3.TabIndex = 0;
             this.label3.Text = "の中から以下略";
             // 
+            // textbox
+            // 
+            this.textbox.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textbox.Location = new System.Drawing.Point(59, 372);
+            this.textbox.Name = "textbox";
+            this.textbox.Size = new System.Drawing.Size(556, 55);
+            this.textbox.TabIndex = 3;
+            // 
+            // tbans
+            // 
+            this.tbans.Font = new System.Drawing.Font("HG創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbans.Location = new System.Drawing.Point(671, 372);
+            this.tbans.Name = "tbans";
+            this.tbans.Size = new System.Drawing.Size(100, 55);
+            this.tbans.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -109,10 +116,11 @@ namespace NumberGame {
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(869, 486);
+            this.Controls.Add(this.tbans);
+            this.Controls.Add(this.textbox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.maxNum);
             this.Controls.Add(this.Number);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -130,9 +138,10 @@ namespace NumberGame {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown Number;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown maxNum;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textbox;
+        private System.Windows.Forms.TextBox tbans;
     }
 }
 

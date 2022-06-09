@@ -22,16 +22,16 @@ namespace NumberGame {
 
         private void button1_Click(object sender, EventArgs e) {
             if (Number.Value == ans){
-                label2.Text = "正解！";
+                textbox.Text = "正解！";
             }
             else if(Math.Abs(ans-Number.Value)<3){
-                label2.Text = "惜しい!";
+                textbox.Text = "惜しい!";
             }
             else if ((ans - Number.Value) < 0){
-                label2.Text = "答えはもっと小さい!!!!!!!!!!!";
+                textbox.Text = "答えはもっと小さい!!!!!!!!!!!";
             }
             else {
-                label2.Text = "答えはもっと大きい!!!!!!!!!!!";
+                textbox.Text = "答えはもっと大きい!!!!!!!!!!!";
             }
         }
  
@@ -41,6 +41,7 @@ namespace NumberGame {
 
         private void maxNum_ValueChanged(object sender, EventArgs e) {
             ans = rnd.Next(1, (int)maxNum.Value);
+            tbans.Text = ans.ToString();
         }
     }
 }
