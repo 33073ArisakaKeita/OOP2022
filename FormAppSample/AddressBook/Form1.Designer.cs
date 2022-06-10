@@ -180,8 +180,10 @@ namespace AddressBook {
             this.dgvPersons.Location = new System.Drawing.Point(40, 344);
             this.dgvPersons.Name = "dgvPersons";
             this.dgvPersons.RowTemplate.Height = 21;
+            this.dgvPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersons.Size = new System.Drawing.Size(691, 150);
             this.dgvPersons.TabIndex = 3;
+            this.dgvPersons.Click += new System.EventHandler(this.dgvPersons_Click);
             // 
             // btAddPerson
             // 
@@ -205,7 +207,7 @@ namespace AddressBook {
             // 
             // btPictureOpen
             // 
-            this.btPictureOpen.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btPictureOpen.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btPictureOpen.Location = new System.Drawing.Point(539, 209);
             this.btPictureOpen.Name = "btPictureOpen";
             this.btPictureOpen.Size = new System.Drawing.Size(56, 34);
