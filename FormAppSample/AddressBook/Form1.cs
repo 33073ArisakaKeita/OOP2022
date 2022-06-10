@@ -66,14 +66,30 @@ namespace AddressBook {
             pbPicture.Image = listPerson[index].Picture;
             CheckBoxClear();
             foreach (var a in listPerson[index].listGroup) {
-                if (Person.GroupType.家族 == a)
-                    cbFamily.Checked = true;
-                if (Person.GroupType.友人 == a)
-                    cbFriend.Checked = true;
-                if (Person.GroupType.仕事 == a)
-                    cbWork.Checked = true;
-                if (Person.GroupType.その他 == a)
-                    cbOther.Checked = true;
+                //if (Person.GroupType.家族 == a)
+                //    cbFamily.Checked = true;
+                //if (Person.GroupType.友人 == a)
+                //    cbFriend.Checked = true;
+                //if (Person.GroupType.仕事 == a)
+                //    cbWork.Checked = true;
+                //if (Person.GroupType.その他 == a)
+                //    cbOther.Checked = true;
+                switch (a) {
+                    case Person.GroupType.家族:
+                        cbFamily.Checked = true;
+                        break;
+                    case Person.GroupType.友人:
+                        cbFriend.Checked = true;
+                        break;
+                    case Person.GroupType.仕事:
+                        cbWork.Checked = true;
+                        break;
+                    case Person.GroupType.その他:
+                        cbOther.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         private void CheckBoxClear() {
