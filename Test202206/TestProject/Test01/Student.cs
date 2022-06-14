@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Test01 {
+﻿namespace Test01 {
     public class Student {
         //学生の名前
         public string Name { get; set; }
