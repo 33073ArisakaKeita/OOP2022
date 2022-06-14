@@ -35,9 +35,11 @@ namespace AddressBook {
                     listGroup = GetCheckBoxGroup(),
                 };
                 listPerson.Add(newPerson);
-                dgvPersons.Rows[listPerson.Count - 1].Selected = true;
+                this.dgvPersons.CurrentCell = this.dgvPersons[0, listPerson.Count - 1];
                 btdelete.Enabled = true;
                 btUpdate.Enabled = true;
+                tbNull();
+                CheckBoxClear();
             }
         }
         //チェックボックスにセットされている値をリストとして取り出す
@@ -69,6 +71,10 @@ namespace AddressBook {
             tbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
             CheckBoxClear();
+            CheckBoxCheck(index);
+        }
+
+        private void CheckBoxCheck(int index) {
             foreach (var group in listPerson[index].listGroup) {
                 switch (group) {
                     case Person.GroupType.家族:
@@ -109,7 +115,7 @@ namespace AddressBook {
             if (dgvPersons.CurrentRow == null) return;
             int index = dgvPersons.CurrentCell.RowIndex;
 
-            if(listPerson.Count > 1) {
+            if(EnabledCheck()) {
                 listPerson.RemoveAt(index);
             }
             else {
@@ -117,11 +123,42 @@ namespace AddressBook {
                 btdelete.Enabled = false;
                 btUpdate.Enabled = false;
             }
+            if (dgvPersons.CurrentRow == null) {
+                tbNull();
+                CheckBoxClear();
+            }
+            else {
+                index = dgvPersons.CurrentCell.RowIndex;
+                tbName.Text = listPerson[index].Name;
+                tbMailAddress.Text = listPerson[index].MailAddress;
+                tbAddress.Text = listPerson[index].Address;
+                tbCompany.Text = listPerson[index].Company;
+                pbPicture.Image = listPerson[index].Picture;
+                CheckBoxClear();
+                CheckBoxCheck(index);
+            }
+            dgvPersons.Refresh();
+        }
+
+        private void tbNull() {
+            tbName.Text = null;
+            tbMailAddress.Text = null;
+            tbAddress.Text = null;
+            tbCompany.Text = null;
+            pbPicture.Image = null;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            btdelete.Enabled = false;
-            btUpdate.Enabled = false;
+            if (EnabledCheck()) {
+                btdelete.Enabled = false;
+                btUpdate.Enabled = false;
+            }
+        }
+        private bool EnabledCheck() {
+            if (listPerson.Count() != 0)
+                return true;
+            else
+                return false;
         }
     }
 }

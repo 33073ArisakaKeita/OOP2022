@@ -179,6 +179,7 @@ namespace AddressBook {
             // dgvPersons
             // 
             this.dgvPersons.AllowUserToAddRows = false;
+            this.dgvPersons.AllowUserToDeleteRows = false;
             this.dgvPersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPersons.Location = new System.Drawing.Point(40, 344);
             this.dgvPersons.MultiSelect = false;
@@ -251,6 +252,7 @@ namespace AddressBook {
             // 
             // btdelete
             // 
+            this.btdelete.Enabled = false;
             this.btdelete.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btdelete.Location = new System.Drawing.Point(670, 246);
             this.btdelete.Name = "btdelete";
