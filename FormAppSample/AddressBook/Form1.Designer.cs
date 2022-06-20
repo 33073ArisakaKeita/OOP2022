@@ -32,7 +32,6 @@ namespace AddressBook {
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbMailAddress = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
-            this.tbCompany = new System.Windows.Forms.TextBox();
             this.cbFamily = new System.Windows.Forms.CheckBox();
             this.cbFriend = new System.Windows.Forms.CheckBox();
             this.cbWork = new System.Windows.Forms.CheckBox();
@@ -45,6 +44,10 @@ namespace AddressBook {
             this.ofdFileOpenDialog = new System.Windows.Forms.OpenFileDialog();
             this.btUpdate = new System.Windows.Forms.Button();
             this.btdelete = new System.Windows.Forms.Button();
+            this.cbCompany = new System.Windows.Forms.ComboBox();
+            this.btSave = new System.Windows.Forms.Button();
+            this.btOpen = new System.Windows.Forms.Button();
+            this.sfdSaveDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
@@ -124,14 +127,6 @@ namespace AddressBook {
             this.tbAddress.Size = new System.Drawing.Size(312, 66);
             this.tbAddress.TabIndex = 1;
             // 
-            // tbCompany
-            // 
-            this.tbCompany.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbCompany.Location = new System.Drawing.Point(221, 209);
-            this.tbCompany.Name = "tbCompany";
-            this.tbCompany.Size = new System.Drawing.Size(312, 31);
-            this.tbCompany.TabIndex = 1;
-            // 
             // cbFamily
             // 
             this.cbFamily.AutoSize = true;
@@ -181,13 +176,13 @@ namespace AddressBook {
             this.dgvPersons.AllowUserToAddRows = false;
             this.dgvPersons.AllowUserToDeleteRows = false;
             this.dgvPersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPersons.Location = new System.Drawing.Point(40, 344);
+            this.dgvPersons.Location = new System.Drawing.Point(80, 344);
             this.dgvPersons.MultiSelect = false;
             this.dgvPersons.Name = "dgvPersons";
             this.dgvPersons.ReadOnly = true;
             this.dgvPersons.RowTemplate.Height = 21;
             this.dgvPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPersons.Size = new System.Drawing.Size(691, 150);
+            this.dgvPersons.Size = new System.Drawing.Size(651, 150);
             this.dgvPersons.TabIndex = 3;
             this.dgvPersons.Click += new System.EventHandler(this.dgvPersons_Click);
             // 
@@ -262,23 +257,56 @@ namespace AddressBook {
             this.btdelete.UseVisualStyleBackColor = true;
             this.btdelete.Click += new System.EventHandler(this.btdelete_Click);
             // 
+            // cbCompany
+            // 
+            this.cbCompany.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbCompany.FormattingEnabled = true;
+            this.cbCompany.Location = new System.Drawing.Point(221, 210);
+            this.cbCompany.Name = "cbCompany";
+            this.cbCompany.Size = new System.Drawing.Size(312, 32);
+            this.cbCompany.TabIndex = 7;
+            // 
+            // btSave
+            // 
+            this.btSave.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btSave.Location = new System.Drawing.Point(19, 463);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(55, 31);
+            this.btSave.TabIndex = 4;
+            this.btSave.Text = "保存…";
+            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
+            // 
+            // btOpen
+            // 
+            this.btOpen.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btOpen.Location = new System.Drawing.Point(19, 426);
+            this.btOpen.Name = "btOpen";
+            this.btOpen.Size = new System.Drawing.Size(55, 31);
+            this.btOpen.TabIndex = 4;
+            this.btOpen.Text = "開く…";
+            this.btOpen.UseVisualStyleBackColor = true;
+            this.btOpen.Click += new System.EventHandler(this.btOpen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 542);
+            this.Controls.Add(this.cbCompany);
             this.Controls.Add(this.btPictureClear);
             this.Controls.Add(this.btPictureOpen);
             this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.btdelete);
             this.Controls.Add(this.btUpdate);
+            this.Controls.Add(this.btSave);
+            this.Controls.Add(this.btOpen);
             this.Controls.Add(this.btAddPerson);
             this.Controls.Add(this.dgvPersons);
             this.Controls.Add(this.cbOther);
             this.Controls.Add(this.cbWork);
             this.Controls.Add(this.cbFriend);
             this.Controls.Add(this.cbFamily);
-            this.Controls.Add(this.tbCompany);
             this.Controls.Add(this.tbAddress);
             this.Controls.Add(this.tbMailAddress);
             this.Controls.Add(this.tbName);
@@ -307,7 +335,6 @@ namespace AddressBook {
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbMailAddress;
         private System.Windows.Forms.TextBox tbAddress;
-        private System.Windows.Forms.TextBox tbCompany;
         private System.Windows.Forms.CheckBox cbFamily;
         private System.Windows.Forms.CheckBox cbFriend;
         private System.Windows.Forms.CheckBox cbWork;
@@ -320,6 +347,10 @@ namespace AddressBook {
         private System.Windows.Forms.OpenFileDialog ofdFileOpenDialog;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.Button btdelete;
+        private System.Windows.Forms.ComboBox cbCompany;
+        private System.Windows.Forms.Button btSave;
+        private System.Windows.Forms.Button btOpen;
+        private System.Windows.Forms.SaveFileDialog sfdSaveDialog;
     }
 }
 

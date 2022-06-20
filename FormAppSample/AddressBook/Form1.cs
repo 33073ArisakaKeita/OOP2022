@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,23 +27,38 @@ namespace AddressBook {
         }
 
         private void btAddPerson_Click(object sender, EventArgs e) {
-            if (tbName.Text != "") {
+            if (String.IsNullOrWhiteSpace(tbName.Text)) {
+                MessageBox.Show("氏名が入力されていません");
+                return;
+            }
+            else {
                 Person newPerson = new Person {
                     Name = tbName.Text,
                     MailAddress = tbMailAddress.Text,
                     Address = tbAddress.Text,
-                    Company = tbCompany.Text,
+                    Company = cbCompany.Text,
                     Picture = pbPicture.Image,
                     listGroup = GetCheckBoxGroup(),
                 };
                 listPerson.Add(newPerson);
                 this.dgvPersons.CurrentCell = this.dgvPersons[0, listPerson.Count - 1];
-                btdelete.Enabled = true;
-                btUpdate.Enabled = true;
+                if (EnabledCheck()) {
+                    btdelete.Enabled = true;
+                    btUpdate.Enabled = true;
+                }
+                //コンボボックスに会社名を登録
+                setCbCompany(cbCompany.Text);
                 tbNull();
                 CheckBoxClear();
             }
         }
+
+        private void setCbCompany(string company) {
+            if (!cbCompany.Items.Contains(company)) {
+                cbCompany.Items.Add(cbCompany.Text);
+            }
+        }
+
         //チェックボックスにセットされている値をリストとして取り出す
         private List<Person.GroupType> GetCheckBoxGroup() {
             var listGroup = new List<Person.GroupType>();
@@ -68,7 +85,7 @@ namespace AddressBook {
             tbName.Text = listPerson[index].Name;
             tbMailAddress.Text = listPerson[index].MailAddress;
             tbAddress.Text = listPerson[index].Address;
-            tbCompany.Text = listPerson[index].Company;
+            cbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
             CheckBoxClear();
             CheckBoxCheck(index);
@@ -105,7 +122,7 @@ namespace AddressBook {
             listPerson[index].Name = tbName.Text;
             listPerson[index].MailAddress = tbMailAddress.Text;
             listPerson[index].Address = tbAddress.Text;
-            listPerson[index].Company = tbCompany.Text;
+            listPerson[index].Company = cbCompany.Text;
             listPerson[index].Picture = pbPicture.Image;
             listPerson[index].listGroup = GetCheckBoxGroup();
             dgvPersons.Refresh();
@@ -115,7 +132,7 @@ namespace AddressBook {
             if (dgvPersons.CurrentRow == null) return;
             int index = dgvPersons.CurrentCell.RowIndex;
 
-            if(EnabledCheck()) {
+            if(listPerson.Count() != 1) {
                 listPerson.RemoveAt(index);
             }
             else {
@@ -132,7 +149,7 @@ namespace AddressBook {
                 tbName.Text = listPerson[index].Name;
                 tbMailAddress.Text = listPerson[index].MailAddress;
                 tbAddress.Text = listPerson[index].Address;
-                tbCompany.Text = listPerson[index].Company;
+                cbCompany.Text = listPerson[index].Company;
                 pbPicture.Image = listPerson[index].Picture;
                 CheckBoxClear();
                 CheckBoxCheck(index);
@@ -144,7 +161,7 @@ namespace AddressBook {
             tbName.Text = null;
             tbMailAddress.Text = null;
             tbAddress.Text = null;
-            tbCompany.Text = null;
+            cbCompany.Text = null;
             pbPicture.Image = null;
         }
 
@@ -159,6 +176,43 @@ namespace AddressBook {
                 return true;
             else
                 return false;
+        }
+
+        private void btSave_Click(object sender, EventArgs e) {
+            if (sfdSaveDialog.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(sfdSaveDialog.FileName,FileMode.Create)) {
+                        bf.Serialize(fs, listPerson);
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btOpen_Click(object sender, EventArgs e) {
+            if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式で逆シリアル化
+                    var bf = new BinaryFormatter();
+
+                    using (FileStream fs = File.Open(ofdFileOpenDialog.FileName, FileMode.Open, FileAccess.Read)) {
+                        //逆シリアル化して読み込む
+                        listPerson = (BindingList<Person>)bf.Deserialize(fs);
+                        dgvPersons.DataSource = null;
+                        dgvPersons.DataSource = listPerson;
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+                foreach (var company in listPerson.Select(p => p.Company)) {
+                    setCbCompany(company);//存在する会社を登録
+                }
+            }
         }
     }
 }
