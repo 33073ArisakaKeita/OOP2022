@@ -19,13 +19,11 @@ namespace AddressBook {
             InitializeComponent();
             dgvPersons.DataSource = listPerson;
         }
-
         private void btPictureOpen_Click(object sender, EventArgs e) {
             if(ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
                 pbPicture.Image = Image.FromFile(ofdFileOpenDialog.FileName);
             }
         }
-
         private void btAddPerson_Click(object sender, EventArgs e) {
             if (String.IsNullOrWhiteSpace(tbName.Text)) {
                 MessageBox.Show("氏名が入力されていません");
@@ -42,23 +40,18 @@ namespace AddressBook {
                 };
                 listPerson.Add(newPerson);
                 this.dgvPersons.CurrentCell = this.dgvPersons[0, listPerson.Count - 1];
-                if (EnabledCheck()) {
-                    btdelete.Enabled = true;
-                    btUpdate.Enabled = true;
-                }
+                EnabledCheck();
                 //コンボボックスに会社名を登録
                 setCbCompany(cbCompany.Text);
                 tbNull();
                 CheckBoxClear();
             }
         }
-
         private void setCbCompany(string company) {
             if (!cbCompany.Items.Contains(company)) {
-                cbCompany.Items.Add(cbCompany.Text);
+                cbCompany.Items.Add(company);
             }
         }
-
         //チェックボックスにセットされている値をリストとして取り出す
         private List<Person.GroupType> GetCheckBoxGroup() {
             var listGroup = new List<Person.GroupType>();
@@ -90,7 +83,6 @@ namespace AddressBook {
             CheckBoxClear();
             CheckBoxCheck(index);
         }
-
         private void CheckBoxCheck(int index) {
             foreach (var group in listPerson[index].listGroup) {
                 switch (group) {
@@ -114,7 +106,6 @@ namespace AddressBook {
         private void CheckBoxClear() {
             cbFamily.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
         }
-
         private void btUpdate_Click(object sender, EventArgs e) {
             if (dgvPersons.CurrentRow == null) return;
             int index = dgvPersons.CurrentCell.RowIndex;
@@ -127,19 +118,12 @@ namespace AddressBook {
             listPerson[index].listGroup = GetCheckBoxGroup();
             dgvPersons.Refresh();
         }
-
         private void btdelete_Click(object sender, EventArgs e) {
             if (dgvPersons.CurrentRow == null) return;
             int index = dgvPersons.CurrentCell.RowIndex;
 
-            if(listPerson.Count() != 1) {
-                listPerson.RemoveAt(index);
-            }
-            else {
-                listPerson.RemoveAt(index);
-                btdelete.Enabled = false;
-                btUpdate.Enabled = false;
-            }
+            listPerson.RemoveAt(index);
+            EnabledCheck();
             if (dgvPersons.CurrentRow == null) {
                 tbNull();
                 CheckBoxClear();
@@ -156,7 +140,6 @@ namespace AddressBook {
             }
             dgvPersons.Refresh();
         }
-
         private void tbNull() {
             tbName.Text = null;
             tbMailAddress.Text = null;
@@ -164,20 +147,14 @@ namespace AddressBook {
             cbCompany.Text = null;
             pbPicture.Image = null;
         }
-
-        private void Form1_Load(object sender, EventArgs e) {
-            if (EnabledCheck()) {
-                btdelete.Enabled = false;
-                btUpdate.Enabled = false;
-            }
+        private void Form1_Load(object sender, EventArgs e) {   
+            EnabledCheck();  
         }
-        private bool EnabledCheck() {
-            if (listPerson.Count() != 0)
-                return true;
-            else
-                return false;
+        private void EnabledCheck() {
+            //三項条件演算子
+            btDelete.Enabled = btUpdate.Enabled
+                = listPerson.Count() > 0 ? true : false;
         }
-
         private void btSave_Click(object sender, EventArgs e) {
             if (sfdSaveDialog.ShowDialog() == DialogResult.OK) {
                 try {
@@ -192,7 +169,6 @@ namespace AddressBook {
                 }
             }
         }
-
         private void btOpen_Click(object sender, EventArgs e) {
             if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
                 try {
@@ -213,6 +189,7 @@ namespace AddressBook {
                     setCbCompany(company);//存在する会社を登録
                 }
             }
+            EnabledCheck();
         }
     }
 }
