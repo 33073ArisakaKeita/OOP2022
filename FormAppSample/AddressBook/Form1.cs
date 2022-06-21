@@ -33,7 +33,9 @@ namespace AddressBook {
                     Company = cbCompany.Text,
                     Picture = pbPicture.Image,
                     listGroup = GetCheckBoxGroup(),
-                    Registration = dateTimePicker1.Value,
+                    Registration = dtpRegistDate.Value,
+                    KindNumber = GetKindNumber(),
+                    TellNumber = tbTelNumber.Text,
                 };
                 listPerson.Add(newPerson);
                 this.dgvPersons.CurrentCell = this.dgvPersons[0, listPerson.Count - 1];
@@ -49,14 +51,21 @@ namespace AddressBook {
             if (dgvPersons.CurrentRow == null) return;
             int index = dgvPersons.CurrentCell.RowIndex;
 
-            listPerson[index].Name = tbName.Text;
-            listPerson[index].MailAddress = tbMailAddress.Text;
-            listPerson[index].Address = tbAddress.Text;
-            listPerson[index].Company = cbCompany.Text;
-            listPerson[index].Picture = pbPicture.Image;
-            listPerson[index].listGroup = GetCheckBoxGroup();
-            listPerson[index].Registration = dateTimePicker1.Value;
-
+            if (String.IsNullOrWhiteSpace(tbName.Text)) {
+                MessageBox.Show("氏名が入力されていません");
+                return;
+            }
+            else {
+                listPerson[index].Name = tbName.Text;
+                listPerson[index].MailAddress = tbMailAddress.Text;
+                listPerson[index].Address = tbAddress.Text;
+                listPerson[index].Company = cbCompany.Text;
+                listPerson[index].Picture = pbPicture.Image;
+                listPerson[index].listGroup = GetCheckBoxGroup();
+                listPerson[index].Registration = dtpRegistDate.Value;
+                listPerson[index].KindNumber = GetKindNumber();
+                listPerson[index].TellNumber = tbTelNumber.Text;
+            }
             dgvPersons.Refresh();
         }
 
@@ -77,6 +86,11 @@ namespace AddressBook {
                 tbAddress.Text = listPerson[index].Address;
                 cbCompany.Text = listPerson[index].Company;
                 pbPicture.Image = listPerson[index].Picture;
+                tbTelNumber.Text = listPerson[index].TellNumber;
+
+                KindNumberClear();
+                KindNumberCheck(index);
+               
                 CheckBoxClear();
                 CheckBoxCheck(index);
             }
@@ -124,7 +138,7 @@ namespace AddressBook {
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
-                cbCompany.Items.Clear();
+                cbCompany.Items.Clear();//コンボボックスのアイテム削除
                 foreach (var company in listPerson.Select(p => p.Company)) {
                     setCbCompany(company);//存在する会社を登録
                 }
@@ -144,7 +158,12 @@ namespace AddressBook {
             tbAddress.Text = listPerson[index].Address;
             cbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
-            dateTimePicker1.Value = listPerson[index].Registration;
+            dtpRegistDate.Value = listPerson[index].Registration.Year > 1900 ?
+                listPerson[index].Registration : DateTime.Today;
+            tbTelNumber.Text = listPerson[index].TellNumber;
+
+            KindNumberClear();
+            KindNumberCheck(index);
             CheckBoxClear();
             CheckBoxCheck(index);
         }
@@ -186,6 +205,24 @@ namespace AddressBook {
 
         private void CheckBoxClear() {
             cbFamily.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
+        }
+
+        private Person.KindNumberType GetKindNumber() {
+            if (rbHome.Checked)
+                return Person.KindNumberType.自宅;
+            else
+                return Person.KindNumberType.携帯;
+        }
+
+        private void KindNumberCheck(int index) {
+            if (listPerson[index].KindNumber == Person.KindNumberType.自宅)
+                rbHome.Checked = true;
+            else
+                rbMobile.Checked = true;
+        }
+
+        private void KindNumberClear() {
+            rbHome.Checked = rbMobile.Checked = false;
         }
 
         private void tbNull() {

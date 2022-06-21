@@ -16,17 +16,34 @@ namespace AddressBook {
         public string Address { get; set; }
         [System.ComponentModel.DisplayName("会社")]
         public string Company { get; set; }
+        [System.ComponentModel.DisplayName("グループ")]
+        public string Group {
+            get {
+                string groups = "";
+                foreach (GroupType group in listGroup) {
+                    groups += "[" + group + "]";
+                }
+                return groups;
+            }
+        }
+        [System.ComponentModel.DisplayName("電話番号")]
+        public string TellNumber { get; set; }
+        [System.ComponentModel.DisplayName("番号種別")]
+        public KindNumberType KindNumber { get; set; }
         public List<GroupType> listGroup { get; set; }
         [System.ComponentModel.DisplayName("登録日")]
         public DateTime Registration { get; set; }
         [System.ComponentModel.DisplayName("画像")]
         public Image Picture { get; set; }
-
         public enum GroupType {
             家族,
             友人,
             仕事,
             その他,
+        }
+        public enum KindNumberType {
+            自宅,
+            携帯,
         }
     }
 }
