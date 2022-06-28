@@ -16,8 +16,10 @@ namespace RssReader {
         public Form1() {
             InitializeComponent();
         }
-        BindingList<string> link = new BindingList<string>();
+        List<string> link = new List<string>();
+
         private void btRssGet_Click(object sender, EventArgs e) {
+            ListClear();
             using (var wc = new WebClient()) {
                 var stream = wc.OpenRead(cbRssUrl.Text);
                 var xdoc = XDocument.Load(stream);
@@ -36,6 +38,10 @@ namespace RssReader {
             var index = lbRssTitle.SelectedIndex;
             cbRssUrl.Text = link[index];
             this.wbBrowser.Navigate(link[index]);
+        }
+        public void ListClear() {
+            lbRssTitle.Items.Clear();
+            link.Clear();
         }
     }
 }
