@@ -35,13 +35,40 @@ namespace RssReader {
             }
         }
         private void lbRssTitle_Click(object sender, EventArgs e) {
-            var index = lbRssTitle.SelectedIndex;
-            cbRssUrl.Text = link[index];
-            this.wbBrowser.Navigate(link[index]);
+            //wbBrowser.Navigate(link[lbRssTitle.SelectedIndex]);
+            //wvBrowser.Navigate(link[lbRssTitle.SelectedIndex]);
+            wvBrowser.Source = new Uri(link[lbRssTitle.SelectedIndex]);
+            RssButtonCheck();
+
         }
+
         public void ListClear() {
             lbRssTitle.Items.Clear();
             link.Clear();
+        }
+
+        private void btRssForward_Click(object sender, EventArgs e) {
+            wvBrowser.GoForward();
+            RssButtonCheck();
+        }
+
+        private void btRssBack_Click(object sender, EventArgs e) {
+            wvBrowser.GoBack();
+            RssButtonCheck();
+        }
+        private void RssButtonCheck() {
+            if (wvBrowser.CanGoBack)
+                btRssBack.Enabled = true;
+            else
+                btRssBack.Enabled = false;
+            if (wvBrowser.CanGoForward)
+                btRssForward.Enabled = true;
+            else
+                btRssForward.Enabled = false;
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            RssButtonCheck();
         }
     }
 }
