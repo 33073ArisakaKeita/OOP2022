@@ -49,25 +49,21 @@ namespace RssReader {
 
         private void btRssForward_Click(object sender, EventArgs e) {
             wvBrowser.GoForward();
-            RssButtonCheck();
         }
 
         private void btRssBack_Click(object sender, EventArgs e) {
             wvBrowser.GoBack();
-            RssButtonCheck();
         }
         private void RssButtonCheck() {
-            if (wvBrowser.CanGoBack)
-                btRssBack.Enabled = true;
-            else
-                btRssBack.Enabled = false;
-            if (wvBrowser.CanGoForward)
-                btRssForward.Enabled = true;
-            else
-                btRssForward.Enabled = false;
+            btRssBack.Enabled = wvBrowser.CanGoBack;
+            btRssForward.Enabled = wvBrowser.CanGoForward;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            RssButtonCheck();
+        }
+
+        private void wvBrowser_NavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) {
             RssButtonCheck();
         }
     }

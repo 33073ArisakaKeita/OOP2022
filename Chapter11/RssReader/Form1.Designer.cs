@@ -90,6 +90,7 @@ namespace RssReader {
             this.wvBrowser.Name = "wvBrowser";
             this.wvBrowser.Size = new System.Drawing.Size(564, 554);
             this.wvBrowser.TabIndex = 6;
+            this.wvBrowser.NavigationCompleted += new System.EventHandler<Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs>(this.wvBrowser_NavigationCompleted);
             // 
             // Form1
             // 
