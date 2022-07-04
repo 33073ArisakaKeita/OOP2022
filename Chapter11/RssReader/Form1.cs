@@ -35,10 +35,10 @@ namespace RssReader {
             }
         }
         private void lbRssTitle_Click(object sender, EventArgs e) {
-            //wbBrowser.Navigate(link[lbRssTitle.SelectedIndex]);
-            //wvBrowser.Navigate(link[lbRssTitle.SelectedIndex]);
-            wvBrowser.Source = new Uri(link[lbRssTitle.SelectedIndex]);
-            RssButtonCheck();
+            var index = lbRssTitle.SelectedIndex;
+            if (index == -1) return;
+            wvBrowser.Source = new Uri(link[index]);
+            BackForwardButtonMaskCheck();
 
         }
 
@@ -54,17 +54,17 @@ namespace RssReader {
         private void btRssBack_Click(object sender, EventArgs e) {
             wvBrowser.GoBack();
         }
-        private void RssButtonCheck() {
+        private void BackForwardButtonMaskCheck() {
             btRssBack.Enabled = wvBrowser.CanGoBack;
             btRssForward.Enabled = wvBrowser.CanGoForward;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            RssButtonCheck();
+            BackForwardButtonMaskCheck();
         }
 
         private void wvBrowser_NavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) {
-            RssButtonCheck();
+            BackForwardButtonMaskCheck();
         }
     }
 }
