@@ -10,15 +10,15 @@ namespace Excercise1 {
     class Program {
         static void Main(string[] args) {
             var file = "Sample.xml";
-            Exercise1_1(file);
+            Exercise1_1("sports.xml");
             Console.WriteLine("------------");
-            Exercise1_2(file);
+            Exercise1_2("sports.xml");
             Console.WriteLine("------------");
-            Exercise1_3(file);
+            Exercise1_3("sports.xml");
             Console.WriteLine("------------");
 
             var newfile = "sports.xml";
-            Exercise1_4(file, newfile);
+            //Exercise1_4(file, newfile);
 
             //確認用
             var text = File.ReadAllText(newfile);
