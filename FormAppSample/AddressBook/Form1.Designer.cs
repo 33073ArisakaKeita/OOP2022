@@ -190,7 +190,7 @@ namespace AddressBook {
             this.dgvPersons.ReadOnly = true;
             this.dgvPersons.RowTemplate.Height = 21;
             this.dgvPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPersons.Size = new System.Drawing.Size(651, 157);
+            this.dgvPersons.Size = new System.Drawing.Size(651, 150);
             this.dgvPersons.TabIndex = 3;
             this.dgvPersons.Click += new System.EventHandler(this.dgvPersons_Click);
             // 
