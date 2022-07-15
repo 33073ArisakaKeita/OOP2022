@@ -226,5 +226,23 @@ namespace CarReportSystem {
 
             setMakerGroup(index);
         }
+
+        //色設定
+        private void ColorToolStripMenuItem(object sender, EventArgs e) {
+            if(cbColorSelect.ShowDialog() == DialogResult.OK) {
+                BackColor = cbColorSelect.Color;
+            }
+        }
+
+        private void btSizeImageChange_Click(object sender, EventArgs e) {
+            if (pbPicture.SizeMode == PictureBoxSizeMode.Zoom)
+                pbPicture.SizeMode = PictureBoxSizeMode.Normal;
+            else
+                pbPicture.SizeMode++;
+
+
+
+            //pbPicture.SizeMode = pbPicture.SizeMode == PictureBoxSizeMode.Zoom　? pbPicture.SizeMode++ : PictureBoxSizeMode.Normal;
+        }
     }
 }
