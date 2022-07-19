@@ -15,6 +15,7 @@ using System.Xml.Serialization;
 namespace CarReportSystem {
     public partial class Form1 : Form {
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
+        private Settings settings = new Settings();
 
         public Form1() {
             InitializeComponent();
@@ -189,10 +190,6 @@ namespace CarReportSystem {
             pbPicture.Image = null;
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-            EnabledCheck();
-        }
-
         private void EnabledCheck() {
             //三項条件演算子
             btDelete.Enabled = btUpdate.Enabled = listCarReport.Count() > 0 ? true : false;
@@ -212,6 +209,15 @@ namespace CarReportSystem {
             }
         }
 
+        private void btSizeImageChange_Click(object sender, EventArgs e) {
+            if (pbPicture.SizeMode == PictureBoxSizeMode.Zoom)
+                pbPicture.SizeMode = PictureBoxSizeMode.Normal;
+            else
+                pbPicture.SizeMode++;
+
+            //pbPicture.SizeMode = pbPicture.SizeMode == PictureBoxSizeMode.Zoom　? pbPicture.SizeMode++ : PictureBoxSizeMode.Normal;
+        }
+
         private void dgvCarReport_CellClick(object sender, DataGridViewCellEventArgs e) {
             //選択されているインデックスを取得する
             if (dgvCarReport.CurrentRow == null) return;
@@ -227,22 +233,28 @@ namespace CarReportSystem {
             setMakerGroup(index);
         }
 
-        //色設定
         private void ColorToolStripMenuItem(object sender, EventArgs e) {
-            if(cbColorSelect.ShowDialog() == DialogResult.OK) {
-                BackColor = cbColorSelect.Color;
+            if(ColorSelect.ShowDialog() == DialogResult.OK) {
+                //背景色の設定、settingsに設定
+                BackColor = ColorSelect.Color;
+                settings.MainFormColor = BackColor;
             }
         }
 
-        private void btSizeImageChange_Click(object sender, EventArgs e) {
-            if (pbPicture.SizeMode == PictureBoxSizeMode.Zoom)
-                pbPicture.SizeMode = PictureBoxSizeMode.Normal;
-            else
-                pbPicture.SizeMode++;
+        private void Form1_Load(object sender, EventArgs e) {
+            EnabledCheck();
+            using (var reader = XmlReader.Create("settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                settings = serializer.Deserialize(reader) as Settings;
+                BackColor = settings.MainFormColor;
+            }
+        }
 
-
-
-            //pbPicture.SizeMode = pbPicture.SizeMode == PictureBoxSizeMode.Zoom　? pbPicture.SizeMode++ : PictureBoxSizeMode.Normal;
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            using (var writer = XmlWriter.Create("settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+            }
         }
     }
 }
