@@ -221,7 +221,6 @@ namespace CarReportSystem {
         private void dgvCarReport_CellClick(object sender, DataGridViewCellEventArgs e) {
             //選択されているインデックスを取得する
             if (dgvCarReport.CurrentRow == null) return;
-
             int index = dgvCarReport.CurrentCell.RowIndex;
             //各リストの項目をテキストボックスへ表示する
             dtpDate.Value = listCarReport[index].Date;
@@ -237,7 +236,7 @@ namespace CarReportSystem {
             if(ColorSelect.ShowDialog() == DialogResult.OK) {
                 //背景色の設定、settingsに設定
                 BackColor = ColorSelect.Color;
-                settings.MainFormColor = BackColor;
+                settings.MainFormColor = ColorSelect.Color.ToArgb();
             }
         }
 
@@ -246,7 +245,7 @@ namespace CarReportSystem {
             using (var reader = XmlReader.Create("settings.xml")) {
                 var serializer = new XmlSerializer(typeof(Settings));
                 settings = serializer.Deserialize(reader) as Settings;
-                BackColor = settings.MainFormColor;
+                BackColor = Color.FromArgb(settings.MainFormColor);
             }
         }
 

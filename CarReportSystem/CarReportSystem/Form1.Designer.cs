@@ -249,6 +249,8 @@ namespace CarReportSystem {
             // 
             // dgvCarReport
             // 
+            this.dgvCarReport.AllowUserToAddRows = false;
+            this.dgvCarReport.AllowUserToDeleteRows = false;
             this.dgvCarReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarReport.Location = new System.Drawing.Point(97, 294);
             this.dgvCarReport.Name = "dgvCarReport";

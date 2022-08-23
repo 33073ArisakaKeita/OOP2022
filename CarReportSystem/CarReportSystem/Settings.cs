@@ -9,6 +9,6 @@ using System.Xml.Serialization;
 namespace CarReportSystem {
     //設定情報
     public class Settings {
-        public Color MainFormColor { get; set; }
+        public int MainFormColor { get; set; }
     }
 }
