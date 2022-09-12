@@ -40,10 +40,6 @@ namespace AddressBook {
 
         }
 
-        private void btConnect_Click(object sender, EventArgs e) {
-            this.addressTableTableAdapter.Fill(this.infosys202206DataSet.AddressTable);
-        }
-
         private void addressTableDataGridView_Click(object sender, EventArgs e) {
             var cur = addressTableDataGridView.CurrentRow;
             if (cur == null)
@@ -91,6 +87,10 @@ namespace AddressBook {
             DataRow newRow = infosys202206DataSet.AddressTable.NewRow();
             newRow[1] = tbName.Text;
             newRow[2] = tbAddress.Text;
+            newRow[3] = tbTel.Text;
+            newRow[4] = tbMail.Text;
+            newRow[5] = tbMemo.Text;
+            newRow[6] = ImageToByteArray(pbImage.Image);
             //データベースへ新しいレコードを追加
             infosys202206DataSet.AddressTable.Rows.Add(newRow);
             //データベース更新
@@ -100,6 +100,33 @@ namespace AddressBook {
 
         private void btSearchName_Click(object sender, EventArgs e) {
             this.addressTableTableAdapter.FillByName(this.infosys202206DataSet.AddressTable ,tbSearchName.Text);
+
+        }
+
+        private void データベース接続ToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.addressTableTableAdapter.Fill(this.infosys202206DataSet.AddressTable);
+        }
+
+        private void btClear_Click(object sender, EventArgs e) {
+            tbName.Text = null;
+            tbAddress.Text = null;
+            tbTel.Text = null;
+            tbMail.Text = null;
+            tbMemo.Text = null;
+            pbImage.Image = null;
+        }
+
+        private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
+            new Version().ShowDialog();
+        }
+
+        private void btSerchNameClear_Click(object sender, EventArgs e) {
+            tbSearchName.Text = null;
+            this.addressTableTableAdapter.FillByName(this.infosys202206DataSet.AddressTable, tbSearchName.Text);
+
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
 
         }
     }
