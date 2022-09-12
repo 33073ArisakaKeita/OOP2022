@@ -58,10 +58,10 @@ namespace AddressBook {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.データベース接続ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btClear = new System.Windows.Forms.Button();
+            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btClear = new System.Windows.Forms.Button();
             this.btSerchNameClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableBindingSource)).BeginInit();
@@ -351,6 +351,14 @@ namespace AddressBook {
             this.データベース接続ToolStripMenuItem.Text = "データベース接続";
             this.データベース接続ToolStripMenuItem.Click += new System.EventHandler(this.データベース接続ToolStripMenuItem_Click);
             // 
+            // 終了XToolStripMenuItem
+            // 
+            this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
+            this.終了XToolStripMenuItem.ShortcutKeyDisplayString = "Alt+F4";
+            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了XToolStripMenuItem.Text = "終了(&X)";
+            this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
+            // 
             // ヘルプHToolStripMenuItem
             // 
             this.ヘルプHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -359,12 +367,12 @@ namespace AddressBook {
             this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
-            // 終了XToolStripMenuItem
+            // バージョン情報ToolStripMenuItem
             // 
-            this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
-            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.終了XToolStripMenuItem.Text = "終了(&X)";
-            this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
+            this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
+            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.バージョン情報ToolStripMenuItem.Text = "バージョン情報";
+            this.バージョン情報ToolStripMenuItem.Click += new System.EventHandler(this.バージョン情報ToolStripMenuItem_Click);
             // 
             // btClear
             // 
@@ -375,13 +383,6 @@ namespace AddressBook {
             this.btClear.Text = "クリア";
             this.btClear.UseVisualStyleBackColor = true;
             this.btClear.Click += new System.EventHandler(this.btClear_Click);
-            // 
-            // バージョン情報ToolStripMenuItem
-            // 
-            this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.バージョン情報ToolStripMenuItem.Text = "バージョン情報";
-            this.バージョン情報ToolStripMenuItem.Click += new System.EventHandler(this.バージョン情報ToolStripMenuItem_Click);
             // 
             // btSerchNameClear
             // 
