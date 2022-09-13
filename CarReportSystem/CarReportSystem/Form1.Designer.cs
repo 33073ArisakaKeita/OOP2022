@@ -618,6 +618,7 @@ namespace CarReportSystem {
             this.carReportDBDataGridView.RowTemplate.Height = 21;
             this.carReportDBDataGridView.Size = new System.Drawing.Size(726, 199);
             this.carReportDBDataGridView.TabIndex = 25;
+            this.carReportDBDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.carReportDBDataGridView_DataError);
             // 
             // dataGridViewTextBoxColumn1
             // 

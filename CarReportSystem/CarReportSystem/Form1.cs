@@ -46,7 +46,7 @@ namespace CarReportSystem {
                 DataRow newRow = infosys202206DataSet.CarReportDB.NewRow();
                 newRow[1] = dtpDate.Value;
                 newRow[2] = cbAuthor.Text;
-                newRow[3] = gbMaker;
+                newRow[3] = GetMakerGroup();
                 newRow[4] = cbCarName.Text;
                 newRow[5] = tbReport.Text;
                 newRow[6] = ImageToByteArray(pbPicture.Image);
@@ -63,24 +63,33 @@ namespace CarReportSystem {
         }
 
         private void btUpdate_Click(object sender, EventArgs e) {
-            if (dgvCarReport.CurrentRow == null) return;
-            int index = dgvCarReport.CurrentCell.RowIndex;
-
+            //if (dgvCarReport.CurrentRow == null) return;
+            //int index = dgvCarReport.CurrentCell.RowIndex;
+            var cur = carReportDBDataGridView.CurrentRow;
             if (String.IsNullOrWhiteSpace(cbAuthor.Text)) {
                 MessageBox.Show("氏名が入力されていません");
                 return;
             }
             else {
-                listCarReport[index].Date = dtpDate.Value;
-                listCarReport[index].Author = cbAuthor.Text;
-                listCarReport[index].Maker = GetMakerGroup();
-                listCarReport[index].CarName = cbCarName.Text;
-                listCarReport[index].Report = tbReport.Text;
-                listCarReport[index].Picture = pbPicture.Image;
+                cur.Cells[1].Value = dtpDate.Value;
+                cur.Cells[2].Value = cbAuthor.Text;
+                cur.Cells[3].Value = GetMakerGroup();
+                cur.Cells[4].Value = cbCarName.Text;
+                cur.Cells[5].Value = tbReport.Text;
+                cur.Cells[6].Value = ImageToByteArray(pbPicture.Image);
+                //listCarReport[index].Date = dtpDate.Value;
+                //listCarReport[index].Author = cbAuthor.Text;
+                //listCarReport[index].Maker = GetMakerGroup();
+                //listCarReport[index].CarName = cbCarName.Text;
+                //listCarReport[index].Report = tbReport.Text;
+                //listCarReport[index].Picture = pbPicture.Image;
             }
             setCbAuther(cbAuthor.Text);
             setCbCarName(cbCarName.Text);
-            dgvCarReport.Refresh();
+            //dgvCarReport.Refresh();
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202206DataSet);
         }
 
         private void btDelete_Click(object sender, EventArgs e) {
@@ -115,19 +124,33 @@ namespace CarReportSystem {
             pbPicture.Image = null;
         }
 
+        private void dgvCarReport_CellClick(object sender, DataGridViewCellEventArgs e) {
+            //選択されているインデックスを取得する
+            if (dgvCarReport.CurrentRow == null) return;
+            int index = dgvCarReport.CurrentCell.RowIndex;
+            //各リストの項目をテキストボックスへ表示する
+            dtpDate.Value = listCarReport[index].Date;
+            cbAuthor.Text = listCarReport[index].Author;
+            cbCarName.Text = listCarReport[index].CarName;
+            tbReport.Text = listCarReport[index].Report;
+            pbPicture.Image = listCarReport[index].Picture;
+
+            setMakerGroup(index);
+        }
+
         private void btSave_Click(object sender, EventArgs e) {
-            if (sfdSaveDialog.ShowDialog() == DialogResult.OK) {
-                try {
-                    //バイナリ形式でシリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(sfdSaveDialog.FileName, FileMode.Create)) {
-                        bf.Serialize(fs, listCarReport);
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            //if (sfdSaveDialog.ShowDialog() == DialogResult.OK) {
+            //    try {
+            //        //バイナリ形式でシリアル化
+            //        var bf = new BinaryFormatter();
+            //        using (FileStream fs = File.Open(sfdSaveDialog.FileName, FileMode.Create)) {
+            //            bf.Serialize(fs, listCarReport);
+            //        }
+            //    }
+            //    catch (Exception ex) {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
         private void btOpen_Click(object sender, EventArgs e) {
@@ -203,7 +226,7 @@ namespace CarReportSystem {
 
         private void EnabledCheck() {
             //三項条件演算子
-            btDelete.Enabled = btUpdate.Enabled = listCarReport.Count() > 0 ? true : false;
+            btDelete.Enabled = btUpdate.Enabled = infosys202206DataSet.CarReportDB.Columns.Count > 0 ? true : false;
         }
 
         private void setCbAuther(string author) {
@@ -218,29 +241,6 @@ namespace CarReportSystem {
                 //まだ登録されていなければ登録
                 cbCarName.Items.Add(carname);
             }
-        }
-
-        private void btSizeImageChange_Click(object sender, EventArgs e) {
-            if (pbPicture.SizeMode == PictureBoxSizeMode.Zoom)
-                pbPicture.SizeMode = PictureBoxSizeMode.Normal;
-            else
-                pbPicture.SizeMode++;
-
-            //pbPicture.SizeMode = pbPicture.SizeMode == PictureBoxSizeMode.Zoom　? pbPicture.SizeMode++ : PictureBoxSizeMode.Normal;
-        }
-
-        private void dgvCarReport_CellClick(object sender, DataGridViewCellEventArgs e) {
-            //選択されているインデックスを取得する
-            if (dgvCarReport.CurrentRow == null) return;
-            int index = dgvCarReport.CurrentCell.RowIndex;
-            //各リストの項目をテキストボックスへ表示する
-            dtpDate.Value = listCarReport[index].Date;
-            cbAuthor.Text = listCarReport[index].Author;
-            cbCarName.Text = listCarReport[index].CarName;
-            tbReport.Text = listCarReport[index].Report;
-            pbPicture.Image = listCarReport[index].Picture;
-
-            setMakerGroup(index);
         }
 
         private void ColorToolStripMenuItem(object sender, EventArgs e) {
@@ -267,16 +267,25 @@ namespace CarReportSystem {
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
-            using (var writer = XmlWriter.Create("settings.xml")) {
-                var serializer = new XmlSerializer(settings.GetType());
-                serializer.Serialize(writer, settings);
-            }
+            //using (var writer = XmlWriter.Create("settings.xml")) {
+            //    var serializer = new XmlSerializer(settings.GetType());
+            //    serializer.Serialize(writer, settings);
+            //}
         }
 
         private void carReportDBBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
             this.Validate();
             this.carReportDBBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202206DataSet);
+        }
+
+        private void btSizeImageChange_Click(object sender, EventArgs e) {
+            if (pbPicture.SizeMode == PictureBoxSizeMode.Zoom)
+                pbPicture.SizeMode = PictureBoxSizeMode.Normal;
+            else
+                pbPicture.SizeMode++;
+
+            //pbPicture.SizeMode = pbPicture.SizeMode == PictureBoxSizeMode.Zoom　? pbPicture.SizeMode++ : PictureBoxSizeMode.Normal;
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -291,6 +300,9 @@ namespace CarReportSystem {
             ImageConverter imgconv = new ImageConverter();
             byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
             return b;
+        }
+
+        private void carReportDBDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) {
         }
     }
 }
