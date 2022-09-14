@@ -73,24 +73,30 @@ namespace CarReportSystem {
         }
 
         private void btDelete_Click(object sender, EventArgs e) {
-            if (dgvCarReport.CurrentRow == null) return;
-            int index = dgvCarReport.CurrentCell.RowIndex;
-
-            listCarReport.RemoveAt(index);
+            if (carReportDBDataGridView.CurrentRow.Cells[0].Equals(DBNull.Value)) return;
+            carReportDBDataGridView.Rows.RemoveAt(carReportDBDataGridView.CurrentRow.Index);
+            //DataRow[] drResult = dt;
+            // listCarReport.RemoveAt(index);
             EnabledCheck();
-            if (dgvCarReport.CurrentRow == null) {
+            if (carReportDBDataGridView.CurrentRow.Cells[0].Equals(DBNull.Value)) {
                 tbNull();
             }
             else {
-                ////消した後にindexをとってくる
-                //index = dgvCarReport.CurrentCell.RowIndex;
-                //dtpDate.Value = listCarReport[index].Date;
-                //cbAuthor.Text = listCarReport[index].Author;
-                //cbCarName.Text = listCarReport[index].CarName;
-                //tbReport.Text = listCarReport[index].Report;
-                //pbPicture.Image = listCarReport[index].Picture;
+                //消した後にindexをとってくる
+                var cur = carReportDBDataGridView.CurrentRow;
+                dtpDate.Text = cur.Cells[1].Value.ToString();
+                cbAuthor.Text = cur.Cells[2].Value.ToString();
+                setMakerGroup();
+                cbCarName.Text = cur.Cells[4].Value.ToString();
+                tbReport.Text = cur.Cells[5].Value.ToString();
+                if (!cur.Cells[6].Value.Equals(DBNull.Value))
+                    pbPicture.Image = ByteArrayToImage((byte[])cur.Cells[6].Value);
+                else
+                    pbPicture.Image = null;
             }
-            dgvCarReport.Refresh();
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202206DataSet);
         }
 
         private void btPictureOpen_Click(object sender, EventArgs e) {
@@ -102,20 +108,6 @@ namespace CarReportSystem {
 
         private void btPictureClear_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
-        }
-
-        private void dgvCarReport_CellClick(object sender, DataGridViewCellEventArgs e) {
-            ////選択されているインデックスを取得する
-            //if (dgvCarReport.CurrentRow == null) return;
-            //int index = dgvCarReport.CurrentCell.RowIndex;
-            ////各リストの項目をテキストボックスへ表示する
-            //dtpDate.Value = listCarReport[index].Date;
-            //cbAuthor.Text = listCarReport[index].Author;
-            //cbCarName.Text = listCarReport[index].CarName;
-            //tbReport.Text = listCarReport[index].Report;
-            //pbPicture.Image = listCarReport[index].Picture;
-
-            //setMakerGroup(index);
         }
 
         private void btSave_Click(object sender, EventArgs e) {
@@ -162,18 +154,24 @@ namespace CarReportSystem {
         }
 
         private void setMakerGroup() {
-            switch (carReportDBDataGridView.CurrentRow.Cells[3].Value) {
-                case CarReport.MakerGroup.トヨタ:
+            switch (carReportDBDataGridView.CurrentRow.Cells[3].Value.ToString()) {
+                case "トヨタ":
+                    rbToyota.Checked = true;
                     break;
-                case CarReport.MakerGroup.日産:
+                case "日産":
+                    rbNissan.Checked = true;
                     break;
-                case CarReport.MakerGroup.ホンダ:
+                case "ホンダ":
+                    rbHonda.Checked = true;
                     break;
-                case CarReport.MakerGroup.スバル:
+                case "スバル":
+                    rbSubaru.Checked = true;
                     break;
-                case CarReport.MakerGroup.外国車:
+                case "外国車":
+                    rbForeignCar.Checked = true;
                     break;
-                case CarReport.MakerGroup.その他:
+                case "その他":
+                    rbOther.Checked = true;
                     break;
                 default:
                     break;
@@ -275,6 +273,7 @@ namespace CarReportSystem {
 
         private void carReportDBDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) {
         }
+
         private void carReportDBDataGridView_Click(object sender, EventArgs e) {
             var cur = carReportDBDataGridView.CurrentRow;
             if (cur == null)
@@ -288,6 +287,16 @@ namespace CarReportSystem {
                 pbPicture.Image = ByteArrayToImage((byte[])cur.Cells[6].Value);
             else
                 pbPicture.Image = null;
+        }
+
+        private void btNameSerch_Click(object sender, EventArgs e) {
+            this.carReportDBTableAdapter.FillByName(this.infosys202206DataSet.CarReportDB, tbNameSerch.Text);
+
+        }
+
+        private void btNameSerchClear_Click(object sender, EventArgs e) {
+            tbNameSerch.Text = null;
+            this.carReportDBTableAdapter.FillByName(this.infosys202206DataSet.CarReportDB, tbNameSerch.Text);
         }
     }
 }
