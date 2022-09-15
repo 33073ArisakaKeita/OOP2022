@@ -14,12 +14,10 @@ using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
-        BindingList<CarReport> listCarReport = new BindingList<CarReport>();
         private Settings settings = Settings.getInstance();
 
         public Form1() {
             InitializeComponent();
-            dgvCarReport.DataSource = listCarReport;
         }
 
         private void btExit_Click(object sender, EventArgs e) {
@@ -100,7 +98,7 @@ namespace CarReportSystem {
         }
 
         private void btPictureOpen_Click(object sender, EventArgs e) {
-            ofdFileOpenDialog.Filter = "画像ファイル|*.jpeg;*.png;*.bmp;*.gif";
+            ofdFileOpenDialog.Filter = "画像ファイル|*.jpeg;*.png;*.bmp;*.gif;*.webp";
             if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
                 pbPicture.Image = Image.FromFile(ofdFileOpenDialog.FileName);
             }
