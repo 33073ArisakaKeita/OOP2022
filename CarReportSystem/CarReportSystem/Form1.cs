@@ -297,4 +297,5 @@ namespace CarReportSystem {
             this.carReportDBTableAdapter.FillByName(this.infosys202206DataSet.CarReportDB, tbNameSerch.Text);
         }
     }
+
 }
