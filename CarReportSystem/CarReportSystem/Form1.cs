@@ -84,7 +84,7 @@ namespace CarReportSystem {
                 var cur = carReportDBDataGridView.CurrentRow;
                 dtpDate.Text = cur.Cells[1].Value.ToString();
                 cbAuthor.Text = cur.Cells[2].Value.ToString();
-                setMakerGroup();
+                setMaker();
                 cbCarName.Text = cur.Cells[4].Value.ToString();
                 tbReport.Text = cur.Cells[5].Value.ToString();
                 if (!cur.Cells[6].Value.Equals(DBNull.Value))
@@ -108,50 +108,7 @@ namespace CarReportSystem {
             pbPicture.Image = null;
         }
 
-        private void btSave_Click(object sender, EventArgs e) {
-            //if (sfdSaveDialog.ShowDialog() == DialogResult.OK) {
-            //    try {
-            //        //バイナリ形式でシリアル化
-            //        var bf = new BinaryFormatter();
-            //        using (FileStream fs = File.Open(sfdSaveDialog.FileName, FileMode.Create)) {
-            //            bf.Serialize(fs, listCarReport);
-            //        }
-            //    }
-            //    catch (Exception ex) {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
-        }
-
-        private void btOpen_Click(object sender, EventArgs e) {
-        //    if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
-        //        try {
-        //            //バイナリ形式で逆シリアル化
-        //            var bf = new BinaryFormatter();
-
-        //            using (FileStream fs = File.Open(ofdFileOpenDialog.FileName, FileMode.Open, FileAccess.Read)) {
-        //                //逆シリアル化して読み込む
-        //                listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-        //                dgvCarReport.DataSource = null;
-        //                dgvCarReport.DataSource = listCarReport;
-        //            }
-        //        }
-        //        catch (Exception ex) {
-        //            MessageBox.Show(ex.Message);
-        //        }
-        //        cbAuthor.Items.Clear();//コンボボックスのアイテム削除
-        //        foreach (var Auther in listCarReport.Select(p => p.Author)) {
-        //            setCbAuther(Auther);//存在する会社を登録
-        //        }
-        //        cbCarName.Items.Clear();//コンボボックスのアイテム削除
-        //        foreach (var CarName in listCarReport.Select(p => p.CarName)) {
-        //            setCbCarName(CarName);//存在する会社を登録
-        //        }
-        //    }
-        //    EnabledCheck();
-        }
-
-        private void setMakerGroup() {
+        private void setMaker() {
             switch (carReportDBDataGridView.CurrentRow.Cells[3].Value.ToString()) {
                 case "トヨタ":
                     rbToyota.Checked = true;
@@ -233,13 +190,6 @@ namespace CarReportSystem {
             EnabledCheck();
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
-            //using (var writer = XmlWriter.Create("settings.xml")) {
-            //    var serializer = new XmlSerializer(settings.GetType());
-            //    serializer.Serialize(writer, settings);
-            //}
-        }
-
         private void carReportDBBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
             this.Validate();
             this.carReportDBBindingSource.EndEdit();
@@ -278,7 +228,7 @@ namespace CarReportSystem {
                 return;
             dtpDate.Text = cur.Cells[1].Value.ToString();
             cbAuthor.Text = cur.Cells[2].Value.ToString();
-            setMakerGroup();
+            setMaker();
             cbCarName.Text = cur.Cells[4].Value.ToString();
             tbReport.Text = cur.Cells[5].Value.ToString();
             if (!cur.Cells[6].Value.Equals(DBNull.Value))
