@@ -37,17 +37,15 @@ namespace SampleEntityFramework {
             Console.WriteLine();
 
             //5
-            var authors = books.OrderByDescending(a => a.Author.Birthday);
-            foreach (var author in authors) {
-                Console.WriteLine($"{author.Author.Name},{author.Author.Birthday}");
+            foreach (var author in books.OrderByDescending(a => a.Author.Birthday)
+                                        .Select(b => b.Author).Distinct()) {
+                Console.WriteLine($"{author.Name}{author.Birthday}");
                 foreach (var book in books) {
-                    if (author.Author.Name.Equals(book.Author.Name))
+                    if (author.Name.Equals(book.Author.Name))
                         Console.WriteLine($"{book.Title},{book.PublishedYear}");
                 }
                 Console.WriteLine();
             }
-
-
         }
         static void InsertBooks() {
             using (var db = new BooksDbContext()) {
