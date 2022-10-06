@@ -53,13 +53,16 @@ namespace Chapter15 {
                         (book,category) => new {
                             Title = book.Title,
                             Category = category.Name,
-                            PublishedYear = book.PublishedYear
+                            PublishedYear = book.PublishedYear,
+                            Price = book.Price
                         }
                 );
-
+            int sum = 0;
             foreach (var book in selected) {
+                sum += book.Price;
                 Console.WriteLine($" {book.PublishedYear}年,{book.Title},{book.Category}");
             }
+            Console.WriteLine($"合計金額:{sum}");
         }
     }
 }
