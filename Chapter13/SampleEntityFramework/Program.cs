@@ -186,5 +186,21 @@ namespace SampleEntityFramework {
                          .ToList();
             }
         }
+
+        static IEnumerable<Book> GetBooks_4() {
+            using (var db = new BooksDbContext()) {
+                return db.Books.Include(nameof(Author))
+                               .OrderBy(b=> b.PublishedYear)
+                               .Take(3);
+                         
+            };
+        }
+        static IEnumerable<Author> GetBooks_5() {
+            using (var db = new BooksDbContext()) {
+                return db.Authors
+                         .OrderByDescending(b => b.Birthday)
+                         .ToList();
+            }
+        }
     }
 }
