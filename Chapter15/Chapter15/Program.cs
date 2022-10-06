@@ -18,41 +18,47 @@ namespace Chapter15 {
                 year = int.Parse(Console.ReadLine());
             }
 
-            int sort;
+            //int sort;
 
-            Console.WriteLine();
-            Console.Write("昇順：1 降順：2 ：");
-            sort = int.Parse(Console.ReadLine());
+            //Console.WriteLine();
+            //Console.Write("昇順：1 降順：2 ：");
+            //sort = int.Parse(Console.ReadLine());
 
-            IEnumerable<Book> books;
-            if (sort == 1) {
-                books = Library.Books
-                    .Where(b => years.Contains(b.PublishedYear))
-                    .OrderBy(b => b.PublishedYear);
-            }
-            else {
-                books = Library.Books
-                    .Where(b => years.Contains(b.PublishedYear))
-                    .OrderByDescending(b => b.PublishedYear);
-            }
+            //IEnumerable<Book> books;
+            //if (sort == 1) {
+            //    books = Library.Books
+            //        .Where(b => years.Contains(b.PublishedYear))
+            //        .OrderBy(b => b.PublishedYear);
+            //}
+            //else {
+            //    books = Library.Books
+            //        .Where(b => years.Contains(b.PublishedYear))
+            //        .OrderByDescending(b => b.PublishedYear);
+            //}
 
             //var years = new int[] { 2013, 2016 };
-            foreach (var book in books) {
-                Console.WriteLine(book);
-            }
-
-            Console.WriteLine();
+            //foreach (var book in books) {
+            //    Console.WriteLine(book);
+            //}
+            //Console.WriteLine();
 
 
             var selected = Library.Books
-                .GroupBy(b => b.PublishedYear)
-                .Select(group => group.OrderByDescending(b => b.Price).First())
-                .OrderBy(o => o.PublishedYear);
+                .Where(b=>years.Contains(b.PublishedYear))
+                .OrderByDescending(b => b.PublishedYear)
+                .ThenBy(b => b.CategoryId)
+                .Join(Library.Categories,  //結合する二番目のシーケンス
+                        book=>book.CategoryId, //対象シーケンスの結合キー
+                        category => category.Id,//二番目のシーケンス結合キー
+                        (book,category) => new {
+                            Title = book.Title,
+                            Category = category.Name,
+                            PublishedYear = book.PublishedYear
+                        }
+                );
 
             foreach (var book in selected) {
-                Console.WriteLine($"{book.PublishedYear}年");
-                var category = Library.Categories.Where(b => b.Id == book.CategoryId).First();
-                Console.WriteLine($" タイトル:{book.Title},価格:{book.Price},カテゴリ:{category.Name}");
+                Console.WriteLine($" {book.PublishedYear}年,{book.Title},{book.Category}");
             }
         }
     }
