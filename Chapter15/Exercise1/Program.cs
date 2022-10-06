@@ -26,31 +26,34 @@ namespace Exercise1 {
         }
 
         private static void Exercise1_2() {
-            throw new NotImplementedException();
+            foreach (var book in Library.Books) {
+                if (Library.Books.Max(b => b.Price) == book.Price)
+                    Console.WriteLine($" {book.CategoryId},{book.PublishedYear}年,{book.Title},{book.Price}円");
+            }
         }
 
         private static void Exercise1_3() {
-            throw new NotImplementedException();
+            var groups = Library.Books
+                                .GroupBy(b => b.PublishedYear)
+                                .OrderBy(g => g.Key);
+            foreach (var group in groups) {
+                Console.WriteLine($"{group.Key}　{group.Count()}冊");
+            }
         }
 
         private static void Exercise1_4() {
-            throw new NotImplementedException();
         }
 
         private static void Exercise1_5() {
-            throw new NotImplementedException();
         }
 
         private static void Exercise1_6() {
-            throw new NotImplementedException();
         }
 
         private static void Exercise1_7() {
-            throw new NotImplementedException();
         }
 
         private static void Exercise1_8() {
-            throw new NotImplementedException();
         }
     }
 }
