@@ -92,13 +92,34 @@ namespace Exercise1 {
             foreach (var categories in books) {
                 Console.WriteLine($"#{categories.Key}");
                 foreach (var book in categories) {
-                    Console.WriteLine($"　{book.Title}");
+                    Console.WriteLine($" {book.Title}");
                 }
 
             }
         }
 
         private static void Exercise1_7() {
+            var books = Library.Books
+                               .Join(Library.Categories,
+                                    book => book.CategoryId,
+                                    category => category.Id,
+                                    (book, category) => new {
+                                        Title = book.Title,
+                                        Category = category.Name,
+                                        PublishedYear = book.PublishedYear,
+                                        Price = book.Price
+                                    }
+                                )
+                               .Where(b=>b.Category.Equals("Development"))
+                               .GroupBy(b=> b.PublishedYear)
+                               .OrderBy(b=> b.Key);
+            foreach (var years in books) {
+                Console.WriteLine($"#{years.Key}");
+                foreach (var book in years) {
+                    Console.WriteLine($" {book.Title}");
+                }
+
+            }
         }
 
         private static void Exercise1_8() {
