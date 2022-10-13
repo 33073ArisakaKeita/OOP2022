@@ -87,39 +87,49 @@ namespace Exercise1 {
                                         Price = book.Price
                                     }
                                 )
-                               .GroupBy(b=>b.Category)
-                               .OrderBy(b=>b.Key);
+                               .GroupBy(b => b.Category)
+                               .OrderBy(b => b.Key);
             foreach (var categories in books) {
                 Console.WriteLine($"#{categories.Key}");
                 foreach (var book in categories) {
                     Console.WriteLine($" {book.Title}");
                 }
-
             }
         }
 
         private static void Exercise1_7() {
+            //var books = Library.Books
+            //                   .Join(Library.Categories,
+            //                        book => book.CategoryId,
+            //                        category => category.Id,
+            //                        (book, category) => new {
+            //                            Title = book.Title,
+            //                            Category = category.Name,
+            //                            PublishedYear = book.PublishedYear,
+            //                            Price = book.Price
+            //                        }
+            //                    )
+            //                   .Where(b=>b.Category.Equals("Development"))
+            //                   .GroupBy(b=> b.PublishedYear)
+            //                   .OrderBy(b=> b.Key);
+            //foreach (var years in books) {
+            //    Console.WriteLine($"#{years.Key}");
+            //    foreach (var book in years) {
+            //        Console.WriteLine($" {book.Title}");
+            //    }
+            //}
+            var CategoryId = Library.Categories.Single(c => c.Name == "Development").Id;
             var books = Library.Books
-                               .Join(Library.Categories,
-                                    book => book.CategoryId,
-                                    category => category.Id,
-                                    (book, category) => new {
-                                        Title = book.Title,
-                                        Category = category.Name,
-                                        PublishedYear = book.PublishedYear,
-                                        Price = book.Price
-                                    }
-                                )
-                               .Where(b=>b.Category.Equals("Development"))
-                               .GroupBy(b=> b.PublishedYear)
-                               .OrderBy(b=> b.Key);
-            foreach (var years in books) {
-                Console.WriteLine($"#{years.Key}");
-                foreach (var book in years) {
+                               .Where(b => b.CategoryId == CategoryId)
+                               .GroupBy(b => b.PublishedYear)
+                               .OrderBy(b => b.Key);
+            foreach (var group in books) {
+                Console.WriteLine($"#{group.Key}");
+                foreach (var book in group) {
                     Console.WriteLine($" {book.Title}");
                 }
-
             }
+
         }
 
         private static void Exercise1_8() {
@@ -130,10 +140,10 @@ namespace Exercise1 {
                                     (c, books) => new {
                                         Category = c.Name,
                                         Count = books.Count()
-                                    });
+                                    })
+                                .Where(x => x.Count >= 4);
             foreach (var obj in groups) {
-                if (obj.Count >= 4)
-                    Console.WriteLine(obj.Category);
+                Console.WriteLine(obj.Category);
 
             }
         }
