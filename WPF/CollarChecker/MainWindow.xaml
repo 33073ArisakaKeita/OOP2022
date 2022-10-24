@@ -1,0 +1,42 @@
+﻿<Window x:Class="CollarChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollarChecker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="color_label" Background="AliceBlue" Margin="20"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="R" FontSize="36" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="G" FontSize="36" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="B" HorizontalAlignment="Center" FontSize="36"/>
+            <Slider x:Name="SampleSlider1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
+            <Slider x:Name="SampleSlider2" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
+            <Slider x:Name="SampleSlider3" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
+            <TextBox x:Name="textbox1" Grid.Column="5" Grid.Row="1" Text="{Binding ElementName=SampleSlider1, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36"/>
+            <TextBox x:Name="textbox2" Grid.Column="5" Grid.Row="2" Text="{Binding ElementName=SampleSlider2, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center"/>
+            <TextBox x:Name="textbox3" Grid.Column="5" Grid.Row="3" Text="{Binding ElementName=SampleSlider3, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>
