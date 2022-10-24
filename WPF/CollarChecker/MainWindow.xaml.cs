@@ -23,7 +23,7 @@ namespace CollarChecker {
         }
 
         private void SampleSlider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            color_label.Background = new SolidColorBrush(Color.FromRgb((byte)int.Parse(textbox1.Text), (byte)int.Parse(textbox2.Text), (byte)int.Parse(textbox3.Text)));
+            color_label.Background = new SolidColorBrush(Color.FromRgb((byte)int.Parse(textbox_R.Text), (byte)int.Parse(textbox_G.Text), (byte)int.Parse(textbox_B.Text)));
         }
     }
 }

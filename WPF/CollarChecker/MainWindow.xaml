@@ -11,7 +11,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="color_label" Background="AliceBlue" Margin="20"/>
+        <Label x:Name="color_label" Background="White" Margin="20" />
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -31,12 +31,12 @@
             <TextBlock Grid.Column="0" Grid.Row="1" Text="R" FontSize="36" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="G" FontSize="36" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="B" HorizontalAlignment="Center" FontSize="36"/>
-            <Slider x:Name="SampleSlider1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <Slider x:Name="SampleSlider2" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <Slider x:Name="SampleSlider3" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <TextBox x:Name="textbox1" Grid.Column="5" Grid.Row="1" Text="{Binding ElementName=SampleSlider1, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36"/>
-            <TextBox x:Name="textbox2" Grid.Column="5" Grid.Row="2" Text="{Binding ElementName=SampleSlider2, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center"/>
-            <TextBox x:Name="textbox3" Grid.Column="5" Grid.Row="3" Text="{Binding ElementName=SampleSlider3, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center"/>
+            <Slider x:Name="SampleSlider_R" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
+            <Slider x:Name="SampleSlider_G" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
+            <Slider x:Name="SampleSlider_B" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
+            <TextBox x:Name="textbox_R" Grid.Column="5" Grid.Row="1" Text="{Binding ElementName=SampleSlider_R, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36"/>
+            <TextBox x:Name="textbox_G" Grid.Column="5" Grid.Row="2" Text="{Binding ElementName=SampleSlider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center"/>
+            <TextBox x:Name="textbox_B" Grid.Column="5" Grid.Row="3" Text="{Binding ElementName=SampleSlider_B, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>
