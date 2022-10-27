@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,6 +61,15 @@ namespace CollarChecker {
             SampleSlider_B.Value = color.B;
             color_label.Background = new SolidColorBrush(Color.FromRgb(color.R, color.G, color.B));
 
+        }
+
+        private void textbox_R_PreviewTextInput(object sender, TextCompositionEventArgs e) {
+            e.Handled = !new Regex("[0-9]").IsMatch(e.Text);
+        }
+
+        private void textbox_R_PreviewExecuted(object sender, ExecutedRoutedEventArgs e) {
+            if (e.Command == ApplicationCommands.Paste)
+                e.Handled = true;
         }
     }
 }

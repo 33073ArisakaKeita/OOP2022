@@ -34,9 +34,12 @@
             <Slider x:Name="SampleSlider_R" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
             <Slider x:Name="SampleSlider_G" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
             <Slider x:Name="SampleSlider_B" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <TextBox x:Name="textbox_R" Grid.Column="5" Grid.Row="1" Text="{Binding ElementName=SampleSlider_R, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36" KeyUp="textbox_R_KeyUp" />
-            <TextBox x:Name="textbox_G" Grid.Column="5" Grid.Row="2" Text="{Binding ElementName=SampleSlider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" />
-            <TextBox x:Name="textbox_B" Grid.Column="5" Grid.Row="3" Text="{Binding ElementName=SampleSlider_B, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" />
+            <TextBox x:Name="textbox_R" Grid.Column="5" Grid.Row="1" Text="{Binding ElementName=SampleSlider_R, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36" KeyUp="textbox_R_KeyUp" 
+                     InputMethod.IsInputMethodEnabled="False" PreviewTextInput="textbox_R_PreviewTextInput" CommandManager.PreviewExecuted="textbox_R_PreviewExecuted"/>
+            <TextBox x:Name="textbox_G" Grid.Column="5" Grid.Row="2" Text="{Binding ElementName=SampleSlider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" 
+                     InputMethod.IsInputMethodEnabled="False" PreviewTextInput="textbox_R_PreviewTextInput" CommandManager.PreviewExecuted="textbox_R_PreviewExecuted"/>
+            <TextBox x:Name="textbox_B" Grid.Column="5" Grid.Row="3" Text="{Binding ElementName=SampleSlider_B, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" 
+                     InputMethod.IsInputMethodEnabled="False" PreviewTextInput="textbox_R_PreviewTextInput" CommandManager.PreviewExecuted="textbox_R_PreviewExecuted"/>
             <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,3,3,3" Height="24" VerticalContentAlignment="Center" Width="155" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
