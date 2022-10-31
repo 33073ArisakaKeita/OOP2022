@@ -5,20 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollarChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="600">
+        Title="MainWindow" Height="300" Width="900" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="color_label" Background="White" Margin="20" BorderThickness="1,1,1,1" BorderBrush="Black"/>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -31,16 +30,16 @@
             <TextBlock Grid.Column="0" Grid.Row="1" Text="R" FontSize="36" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="G" FontSize="36" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="B" HorizontalAlignment="Center" FontSize="36"/>
-            <Slider x:Name="SampleSlider_R" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <Slider x:Name="SampleSlider_G" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <Slider x:Name="SampleSlider_B" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged"/>
-            <TextBox x:Name="textbox_R" Grid.Column="5" Grid.Row="1" Text="{Binding ElementName=SampleSlider_R, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36" KeyUp="textbox_R_KeyUp" 
+            <Slider x:Name="SampleSlider_R" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged" TickPlacement="BottomRight" TickFrequency="1"/>
+            <Slider x:Name="SampleSlider_G" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged" TickPlacement="BottomRight" TickFrequency="1"/>
+            <Slider x:Name="SampleSlider_B" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" ValueChanged="SampleSlider1_ValueChanged" TickPlacement="BottomRight" TickFrequency="1"/>
+            <TextBox x:Name="textbox_R" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=SampleSlider_R, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="36" KeyUp="textbox_R_KeyUp" 
                      InputMethod.IsInputMethodEnabled="False" PreviewTextInput="textbox_R_PreviewTextInput" CommandManager.PreviewExecuted="textbox_R_PreviewExecuted"/>
-            <TextBox x:Name="textbox_G" Grid.Column="5" Grid.Row="2" Text="{Binding ElementName=SampleSlider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" 
+            <TextBox x:Name="textbox_G" Grid.Column="2" Grid.Row="2" Text="{Binding ElementName=SampleSlider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" 
                      InputMethod.IsInputMethodEnabled="False" PreviewTextInput="textbox_R_PreviewTextInput" CommandManager.PreviewExecuted="textbox_R_PreviewExecuted"/>
-            <TextBox x:Name="textbox_B" Grid.Column="5" Grid.Row="3" Text="{Binding ElementName=SampleSlider_B, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" 
+            <TextBox x:Name="textbox_B" Grid.Column="2" Grid.Row="3" Text="{Binding ElementName=SampleSlider_B, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="36" HorizontalAlignment="Center" KeyUp="textbox_R_KeyUp" 
                      InputMethod.IsInputMethodEnabled="False" PreviewTextInput="textbox_R_PreviewTextInput" CommandManager.PreviewExecuted="textbox_R_PreviewExecuted"/>
-            <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,3,3,3" Height="24" VerticalContentAlignment="Center" Width="155" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,3,3,3" Height="24" VerticalContentAlignment="Center" Width="140" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -54,6 +53,10 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <Button x:Name="stock_button" Grid.Row="4" Grid.Column="2" Margin="10,10,10,9" Content="STOCK" Click="stock_button_Click" />
+            <ListBox x:Name="stock_colors" Grid.Row="0" Grid.Column="5" Grid.RowSpan="6" Margin="10">
+            </ListBox>
+            <Button x:Name="Delete_Button" Content="DELETE" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Top" Width="51" Height="26" Click="Delete_Button_Click"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,22 +20,23 @@ namespace CollarChecker {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
+    
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
             DataContext = GetColorList(); //←追加
 
         }
+        MyColor mycolor;
 
         private void SampleSlider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             Null_Check();
-            color_label.Background = new SolidColorBrush(Color.FromRgb((byte)int.Parse(textbox_R.Text), (byte)int.Parse(textbox_G.Text), (byte)int.Parse(textbox_B.Text)));
+            setColor();
         }
 
         private void textbox_R_KeyUp(object sender, KeyEventArgs e) {
             Null_Check();
-            color_label.Background = new SolidColorBrush(Color.FromRgb((byte)int.Parse(textbox_R.Text), (byte)int.Parse(textbox_G.Text), (byte)int.Parse(textbox_B.Text)));
-
+            setColor();
         }
         private void Null_Check() {
             if (String.IsNullOrEmpty(textbox_R.Text))
@@ -54,12 +56,12 @@ namespace CollarChecker {
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            mycolor = (MyColor)((ComboBox)sender).SelectedItem;
             var color = mycolor.Color;
             SampleSlider_R.Value = color.R;
             SampleSlider_G.Value = color.G;
             SampleSlider_B.Value = color.B;
-            color_label.Background = new SolidColorBrush(Color.FromRgb(color.R, color.G, color.B));
+            setColor();
 
         }
 
@@ -70,6 +72,23 @@ namespace CollarChecker {
         private void textbox_R_PreviewExecuted(object sender, ExecutedRoutedEventArgs e) {
             if (e.Command == ApplicationCommands.Paste)
                 e.Handled = true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            setColor();
+        }
+        private void setColor() {
+            color_label.Background = new SolidColorBrush(Color.FromRgb((byte)int.Parse(textbox_R.Text), (byte)int.Parse(textbox_G.Text), (byte)int.Parse(textbox_B.Text)));
+
+        }
+
+        private void stock_button_Click(object sender, RoutedEventArgs e) {
+            //this.stock_colors.Items.Add(mycolor);
+            //var color = new List<string>() { textbox_R.Text, textbox_G.Text, textbox_B.Text };
+        }
+
+        private void Delete_Button_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
