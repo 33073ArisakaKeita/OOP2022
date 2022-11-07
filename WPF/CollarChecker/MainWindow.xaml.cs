@@ -35,7 +35,6 @@ namespace CollarChecker {
 
             setColor();
             //mycolor.Color = Color.FromRgb((byte)int.Parse(textbox_R.Text), (byte)int.Parse(textbox_G.Text), (byte)int.Parse(textbox_B.Text));
-
             mycolor.Color = Color.FromRgb((byte)SampleSlider_R.Value, (byte)SampleSlider_G.Value, (byte)SampleSlider_B.Value);
         }
 
@@ -89,7 +88,12 @@ namespace CollarChecker {
         }
 
         private void stock_button_Click(object sender, RoutedEventArgs e) {
-            stock_colors.Items.Add("R:"+mycolor.Color.R+" G:"+mycolor.Color.G+" B:"+mycolor.Color.B);
+            if (mycolor.Name != null) {
+                stock_colors.Items.Add(mycolor.Name);
+                mycolor.Name = null;
+            }
+            else
+                stock_colors.Items.Add("R:" + mycolor.Color.R + " G:" + mycolor.Color.G + " B:" + mycolor.Color.B);
             //color = new List<string>() { textbox_R.Text, textbox_G.Text, textbox_B.Text };
             Enabled_Check();
         }
