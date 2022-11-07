@@ -27,16 +27,21 @@ namespace CollarChecker {
             DataContext = GetColorList(); //←追加
 
         }
-        MyColor mycolor;
+        public MyColor mycolor = default;
 
         private void SampleSlider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             Null_Check();
+
             setColor();
+            //mycolor.Color = Color.FromRgb((byte)int.Parse(textbox_R.Text), (byte)int.Parse(textbox_G.Text), (byte)int.Parse(textbox_B.Text));
+
+            mycolor.Color = Color.FromRgb((byte)SampleSlider_R.Value, (byte)SampleSlider_G.Value, (byte)SampleSlider_B.Value);
         }
 
         private void textbox_R_KeyUp(object sender, KeyEventArgs e) {
             Null_Check();
             setColor();
+
         }
         private void Null_Check() {
             if (String.IsNullOrEmpty(textbox_R.Text))
@@ -83,8 +88,8 @@ namespace CollarChecker {
         }
 
         private void stock_button_Click(object sender, RoutedEventArgs e) {
-            //this.stock_colors.Items.Add(mycolor);
-            //var color = new List<string>() { textbox_R.Text, textbox_G.Text, textbox_B.Text };
+            stock_colors.Items.Add("R:"+mycolor.Color.R+" G:"+mycolor.Color.G+" B:"+mycolor.Color.B);
+            //color = new List<string>() { textbox_R.Text, textbox_G.Text, textbox_B.Text };
         }
 
         private void Delete_Button_Click(object sender, RoutedEventArgs e) {
