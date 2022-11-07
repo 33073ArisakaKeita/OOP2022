@@ -25,9 +25,10 @@ namespace CollarChecker {
         public MainWindow() {
             InitializeComponent();
             DataContext = GetColorList(); //←追加
+            Enabled_Check();
 
         }
-        public MyColor mycolor = default;
+        public MyColor mycolor = new MyColor();
 
         private void SampleSlider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             Null_Check();
@@ -90,10 +91,20 @@ namespace CollarChecker {
         private void stock_button_Click(object sender, RoutedEventArgs e) {
             stock_colors.Items.Add("R:"+mycolor.Color.R+" G:"+mycolor.Color.G+" B:"+mycolor.Color.B);
             //color = new List<string>() { textbox_R.Text, textbox_G.Text, textbox_B.Text };
+            Enabled_Check();
         }
 
         private void Delete_Button_Click(object sender, RoutedEventArgs e) {
-
+            if (stock_colors.SelectedItem != null) {
+                stock_colors.Items.RemoveAt(stock_colors.SelectedIndex);
+                Enabled_Check();
+            }
+        }
+        private void Enabled_Check() {
+            if (stock_colors.Items.Count != 0)
+                Delete_Button.IsEnabled = true;
+            else
+                Delete_Button.IsEnabled = false;
         }
     }
 }
