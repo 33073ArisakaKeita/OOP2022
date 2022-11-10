@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//色がおかしい。listboxの選択した値をスライダーや色に正しく反映したい
 
 namespace CollarChecker {
     /// <summary>
@@ -38,16 +37,6 @@ namespace CollarChecker {
         }
 
         private void SampleSlider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            var r = byte.Parse(textbox_R.Text);
-            var g = byte.Parse(textbox_G.Text);
-            var b = byte.Parse(textbox_B.Text);
-            setColor(r, g, b);
-        }
-
-        private void textbox_R_KeyUp(object sender, KeyEventArgs e) {
-            if (textbox_R == null || textbox_G == null || textbox_B == null ||
-               textbox_R.Text == "" || textbox_G.Text == "" || textbox_B.Text == "" || color_label == null)
-                return;
             var r = byte.Parse(textbox_R.Text);
             var g = byte.Parse(textbox_G.Text);
             var b = byte.Parse(textbox_B.Text);
@@ -92,8 +81,12 @@ namespace CollarChecker {
 
         private void Delete_Button_Click(object sender, RoutedEventArgs e) {
             if (stock_colors.SelectedItem != null) {
-                stock_colors.Items.RemoveAt(stock_colors.SelectedIndex);
-                ColorList.RemoveAt(stock_colors.SelectedIndex);
+                var delIndex = stock_colors.SelectedIndex;
+                if (delIndex == -1)
+                    return;
+
+                ColorList.RemoveAt(delIndex);
+                stock_colors.Items.RemoveAt(delIndex);
                 Enabled_Check();
             }
         }
@@ -115,6 +108,16 @@ namespace CollarChecker {
 
         private void setColor(byte r, byte g, byte b) {
             color_label.Background = new SolidColorBrush(Color.FromRgb(r, g, b));
+        }
+
+        private void textbox_R_TextChanged(object sender, TextChangedEventArgs e) {
+            if (textbox_R == null || textbox_G == null || textbox_B == null ||
+              textbox_R.Text == "" || textbox_G.Text == "" || textbox_B.Text == "" || color_label == null)
+                return;
+            var r = byte.Parse(textbox_R.Text);
+            var g = byte.Parse(textbox_G.Text);
+            var b = byte.Parse(textbox_B.Text);
+            setColor(r, g, b);
         }
     }
 
