@@ -73,15 +73,6 @@ namespace CollarChecker {
 
         }
 
-        //private void textbox_R_PreviewTextInput(object sender, TextCompositionEventArgs e) {
-        //    e.Handled = !new Regex("[0-9]").IsMatch(e.Text);
-        //}
-
-        //private void textbox_R_PreviewExecuted(object sender, ExecutedRoutedEventArgs e) {
-        //    if (e.Command == ApplicationCommands.Paste)
-        //        e.Handled = true;
-        //}
-
         private void stock_button_Click(object sender, RoutedEventArgs e) {
            
             MyColor stColor = new MyColor();
