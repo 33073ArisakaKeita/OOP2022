@@ -38,15 +38,82 @@ namespace WeatherApp {
             var wc = new WebClient() {
                 Encoding = Encoding.UTF8
             };
-            
+
             var areacode = areas.getAreacode((string)cbtihou2.SelectedItem.ToString());
-            var str = "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/" + areacode +".json";
-            var dString = wc.DownloadString(str);
+            var dString = wc.DownloadString("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/" + areacode + ".json");
+            var weather = wc.DownloadString("https://www.jma.go.jp/bosai/forecast/data/forecast/" + areacode + ".json");
+            var wearher_map = wc.DownloadString("https://www.jma.go.jp/bosai/weather_map/data/list.json");
 
-            var json = JsonConvert.DeserializeObject<Rootobject>(dString);
+            //jsonデータの取得
+            var json = JsonConvert.DeserializeObject<Rootobject2>(dString);
+            var json_wearher_map = JsonConvert.DeserializeObject<Rootobject3>(wearher_map);
+            var json_weather = JsonConvert.DeserializeObject<Class1[]>(weather);
 
+            todaysWether.Text = json_weather[0].timeSeries[0].areas[0].weathers[0];
+            tomorrowsWether.Text = json_weather[0].timeSeries[0].areas[0].weathers[1];
+            dafWeather.Text = json_weather[0].timeSeries[0].areas[0].weathers[2];
+
+            //日付
+            var today = json_weather[0].reportDatetime;
+            tommorow3.Text = json_weather[1].timeSeries[1].timeDefines[3].ToString("MM/dd");
+            tommorow4.Text = json_weather[1].timeSeries[1].timeDefines[4].ToString("MM/dd");
+            tommorow5.Text = json_weather[1].timeSeries[1].timeDefines[5].ToString("MM/dd");
+            tommorow6.Text = json_weather[1].timeSeries[1].timeDefines[6].ToString("MM/dd");
+
+            //todayMax.Text = json_weather[0].timeSeries[3].areas[0].weatherCodes[0];
+            tommorowMax.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[1];
+            tommorow2Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[2];
+            tommorow3Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[3];
+            tommorow4Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[4];
+            tommorow5Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[5];
+            tommorow6Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[6];
+
+            //最低気温はないからハイフンとかいれる
+            //today.Min =
+            tommorowMin.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[1];
+            tommorow2Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[2];
+            tommorow3Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[3];
+            tommorow4Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[4];
+            tommorow5Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[5];
+            tommorow6Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[6];
+
+            //アイコン
+            var icon_code = json_weather[0].timeSeries[0].areas[0].weatherCodes[0];
+            pbIcon1.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/"+ icon_code+ ".png";
+            pbIcon1.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[1];
+            pbIcon2.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            pbIcon2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[2];
+            pbIcon3.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            pbIcon3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[3];
+            pbIcon4.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            pbIcon4.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[4];
+            pbIcon5.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            pbIcon5.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[5];
+            pbIcon6.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            pbIcon6.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[6];
+            pbIcon7.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            pbIcon7.SizeMode = PictureBoxSizeMode.StretchImage;
+
+
+            //概況
             tbWeatherInfo.ResetText();
             tbWeatherInfo.Text += json.text;
+
+            //ピクチャーボックス
+            pbweather.ImageLocation = "https://www.jma.go.jp/bosai/weather_map/data/png/" + json_wearher_map.near.ft24[0];
+            pbweather.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void cbtihou1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -138,7 +205,6 @@ namespace WeatherApp {
                 default:
                     break;
             }
-
         }
     }
 }
