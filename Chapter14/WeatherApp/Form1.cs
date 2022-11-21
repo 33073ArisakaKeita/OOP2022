@@ -17,6 +17,7 @@ using static WeatherApp.jma;
 namespace WeatherApp {
     public partial class Form1 : Form {
         AreaCode areas;
+        string areacode;
         public Form1() {
             InitializeComponent();
             cbtihou1.Items.Add("北海道地方");
@@ -39,7 +40,11 @@ namespace WeatherApp {
                 Encoding = Encoding.UTF8
             };
 
-            var areacode = areas.getAreacode((string)cbtihou2.SelectedItem.ToString());
+            areacode = areas.getAreacode((string)cbtihou2.SelectedItem.ToString());
+            getWeather(wc);
+        }
+
+        private void getWeather(WebClient wc) {
             var dString = wc.DownloadString("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/" + areacode + ".json");
             var weather = wc.DownloadString("https://www.jma.go.jp/bosai/forecast/data/forecast/" + areacode + ".json");
             var wearher_map = wc.DownloadString("https://www.jma.go.jp/bosai/weather_map/data/list.json");
@@ -48,61 +53,104 @@ namespace WeatherApp {
             var json = JsonConvert.DeserializeObject<Rootobject2>(dString);
             var json_wearher_map = JsonConvert.DeserializeObject<Rootobject3>(wearher_map);
             var json_weather = JsonConvert.DeserializeObject<Class1[]>(weather);
+            //↓アイコン変数
+            var icon_code = json_weather[0].timeSeries[0].areas[0].weatherCodes[0];
 
-            todaysWether.Text = json_weather[0].timeSeries[0].areas[0].weathers[0];
-            tomorrowsWether.Text = json_weather[0].timeSeries[0].areas[0].weathers[1];
-            dafWeather.Text = json_weather[0].timeSeries[0].areas[0].weathers[2];
+            //↓areasの要素数
+            var a = json_weather[0].timeSeries[0].areas.Length;
+
+            //消す
+            areas0.Text = areas1.Text = areas2.Text = areas3.Text = null;
+            areas0Weather.Text = areas1Weather.Text = areas2Weather.Text = areas3Weather.Text = null;
+            areas0Max.Text = areas1Max.Text = areas2Max.Text = areas3Max.Text = null;
+            areas0Min.Text = areas1Min.Text = areas2Min.Text = areas3Min.Text = null;
+            areas0pbIcon.Image = areas1pbIcon.Image = areas2pbIcon.Image = areas3pbIcon.Image = null;
+
+
+            areas0.Text = json_weather[0].timeSeries[0].areas[0].area.name;
+            areas0Weather.Text = json_weather[0].timeSeries[0].areas[0].weathers[0];
+
+            if (a >= 2) {
+                areas1.Text = json_weather[0].timeSeries[0].areas[1].area.name;
+                areas1Weather.Text = json_weather[0].timeSeries[0].areas[1].weathers[0];
+                areas1Max.Text = json_weather[0].timeSeries[2].areas[1].temps[0];
+                areas1Min.Text = "-";
+                icon_code = json_weather[0].timeSeries[0].areas[1].weatherCodes[0];
+                areas1pbIcon.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+                areas1pbIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            if (a >= 3) {
+                areas2.Text = json_weather[0].timeSeries[0].areas[2].area.name;
+                areas2Weather.Text = json_weather[0].timeSeries[0].areas[2].weathers[0];
+                areas2Max.Text = json_weather[0].timeSeries[2].areas[2].temps[0];
+                areas2Min.Text = "-";
+                icon_code = json_weather[0].timeSeries[0].areas[2].weatherCodes[0];
+                areas2pbIcon.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+                areas2pbIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            if (a >= 4) {
+                areas3.Text = json_weather[0].timeSeries[0].areas[3].area.name;
+                areas3Weather.Text = json_weather[0].timeSeries[0].areas[3].weathers[0];
+                areas3Max.Text = json_weather[0].timeSeries[2].areas[3].temps[0];
+                areas3Min.Text = "-";
+                icon_code = json_weather[0].timeSeries[0].areas[3].weatherCodes[0];
+                areas3pbIcon.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+                areas3pbIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
 
             //日付
-            var today = json_weather[0].reportDatetime;
-            tommorow3.Text = json_weather[1].timeSeries[1].timeDefines[3].ToString("MM/dd");
-            tommorow4.Text = json_weather[1].timeSeries[1].timeDefines[4].ToString("MM/dd");
-            tommorow5.Text = json_weather[1].timeSeries[1].timeDefines[5].ToString("MM/dd");
-            tommorow6.Text = json_weather[1].timeSeries[1].timeDefines[6].ToString("MM/dd");
+            labelDate.Text = json_weather[0].reportDatetime.ToString("MM/dd");
+            labelarea.Text = cbtihou2.Text;
+            tommorow.Text = json_weather[1].timeSeries[1].timeDefines[0].ToString("MM/dd");
+            tommorow2.Text = json_weather[1].timeSeries[1].timeDefines[1].ToString("MM/dd");
+            tommorow3.Text = json_weather[1].timeSeries[1].timeDefines[2].ToString("MM/dd");
+            tommorow4.Text = json_weather[1].timeSeries[1].timeDefines[3].ToString("MM/dd");
+            tommorow5.Text = json_weather[1].timeSeries[1].timeDefines[4].ToString("MM/dd");
+            tommorow6.Text = json_weather[1].timeSeries[1].timeDefines[5].ToString("MM/dd");
 
-            //todayMax.Text = json_weather[0].timeSeries[3].areas[0].weatherCodes[0];
-            tommorowMax.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[1];
-            tommorow2Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[2];
-            tommorow3Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[3];
-            tommorow4Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[4];
-            tommorow5Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[5];
-            tommorow6Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[6];
+            areas0Max.Text = json_weather[0].timeSeries[2].areas[0].temps[0];
+            tommorowMax.Text = json_weather[0].timeSeries[2].areas[0].temps[3];
+            tommorow2Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[1];
+            tommorow3Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[2];
+            tommorow4Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[3];
+            tommorow5Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[4];
+            tommorow6Max.Text = json_weather[1].timeSeries[1].areas[0].tempsMax[5];
 
             //最低気温はないからハイフンとかいれる
-            //today.Min =
-            tommorowMin.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[1];
-            tommorow2Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[2];
-            tommorow3Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[3];
-            tommorow4Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[4];
-            tommorow5Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[5];
-            tommorow6Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[6];
+            areas0Min.Text = "-";
+            tommorowMin.Text = json_weather[0].timeSeries[2].areas[0].temps[2];
+            tommorow2Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[1];
+            tommorow3Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[2];
+            tommorow4Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[3];
+            tommorow5Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[4];
+            tommorow6Min.Text = json_weather[1].timeSeries[1].areas[0].tempsMin[5];
 
             //アイコン
-            var icon_code = json_weather[0].timeSeries[0].areas[0].weatherCodes[0];
-            pbIcon1.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/"+ icon_code+ ".png";
-            pbIcon1.SizeMode = PictureBoxSizeMode.StretchImage;
+            icon_code = json_weather[0].timeSeries[0].areas[0].weatherCodes[0];
+            areas0pbIcon.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
+            areas0pbIcon.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[1];
+            icon_code = json_weather[0].timeSeries[0].areas[0].weatherCodes[1];
             pbIcon2.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
             pbIcon2.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[2];
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[1];
             pbIcon3.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
             pbIcon3.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[3];
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[2];
             pbIcon4.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
             pbIcon4.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[4];
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[3];
             pbIcon5.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
             pbIcon5.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[5];
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[4];
             pbIcon6.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
             pbIcon6.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[6];
+            icon_code = json_weather[1].timeSeries[0].areas[0].weatherCodes[5];
             pbIcon7.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/" + icon_code + ".png";
             pbIcon7.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -121,6 +169,7 @@ namespace WeatherApp {
             if (index == -1)
                 return;
             cbtihou2.Items.Clear();
+            cbtihou2.Text = null;
             switch (index) {
                 case 0:
                     cbtihou2.Items.Add("宗谷地方");
@@ -205,6 +254,15 @@ namespace WeatherApp {
                 default:
                     break;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            var wc = new WebClient() {
+                Encoding = Encoding.UTF8
+            };
+            areacode = "130000";
+            getWeather(wc);
+
         }
     }
 }

@@ -29,17 +29,8 @@ namespace WeatherApp {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbtihou2 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.todaysWether = new System.Windows.Forms.TextBox();
-            this.tomorrowsWether = new System.Windows.Forms.TextBox();
-            this.tbDate = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.areas0 = new System.Windows.Forms.Label();
             this.pbweather = new System.Windows.Forms.PictureBox();
-            this.dafWeather = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbWeatherInfo = new System.Windows.Forms.TextBox();
-            this.概況 = new System.Windows.Forms.Label();
             this.tommorow3 = new System.Windows.Forms.Label();
             this.tommorow4 = new System.Windows.Forms.Label();
             this.tommorow5 = new System.Windows.Forms.Label();
@@ -48,13 +39,11 @@ namespace WeatherApp {
             this.tommorow4Max = new System.Windows.Forms.Label();
             this.tommorow5Max = new System.Windows.Forms.Label();
             this.tommorow6Max = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.tommorow6Min = new System.Windows.Forms.Label();
             this.tommorow5Min = new System.Windows.Forms.Label();
             this.tommorow4Min = new System.Windows.Forms.Label();
             this.tommorow3Min = new System.Windows.Forms.Label();
-            this.pbIcon1 = new System.Windows.Forms.PictureBox();
+            this.areas0pbIcon = new System.Windows.Forms.PictureBox();
             this.pbIcon3 = new System.Windows.Forms.PictureBox();
             this.pbIcon4 = new System.Windows.Forms.PictureBox();
             this.pbIcon5 = new System.Windows.Forms.PictureBox();
@@ -63,24 +52,49 @@ namespace WeatherApp {
             this.pbIcon2 = new System.Windows.Forms.PictureBox();
             this.tommorowMax = new System.Windows.Forms.Label();
             this.tommorow2Max = new System.Windows.Forms.Label();
-            this.todayMax = new System.Windows.Forms.Label();
+            this.areas0Max = new System.Windows.Forms.Label();
             this.tommorowMin = new System.Windows.Forms.Label();
             this.tommorow2Min = new System.Windows.Forms.Label();
-            this.todayMin = new System.Windows.Forms.Label();
+            this.areas0Min = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tommorow2 = new System.Windows.Forms.Label();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.tbWeatherInfo = new System.Windows.Forms.TextBox();
+            this.tommorow = new System.Windows.Forms.Label();
+            this.areas1 = new System.Windows.Forms.Label();
+            this.areas2 = new System.Windows.Forms.Label();
+            this.areas3 = new System.Windows.Forms.Label();
+            this.areas0Weather = new System.Windows.Forms.Label();
+            this.areas1Weather = new System.Windows.Forms.Label();
+            this.areas2Max = new System.Windows.Forms.Label();
+            this.areas3Weather = new System.Windows.Forms.Label();
+            this.areas1Max = new System.Windows.Forms.Label();
+            this.areas1Min = new System.Windows.Forms.Label();
+            this.areas2Min = new System.Windows.Forms.Label();
+            this.areas2Weather = new System.Windows.Forms.Label();
+            this.areas3Max = new System.Windows.Forms.Label();
+            this.areas3Min = new System.Windows.Forms.Label();
+            this.labelarea = new System.Windows.Forms.Label();
+            this.areas1pbIcon = new System.Windows.Forms.PictureBox();
+            this.areas2pbIcon = new System.Windows.Forms.PictureBox();
+            this.areas3pbIcon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbweather)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas0pbIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas1pbIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas2pbIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas3pbIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // btWeatherGet
             // 
-            this.btWeatherGet.Location = new System.Drawing.Point(337, 160);
-            this.btWeatherGet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btWeatherGet.Location = new System.Drawing.Point(65, 393);
+            this.btWeatherGet.Margin = new System.Windows.Forms.Padding(4);
             this.btWeatherGet.Name = "btWeatherGet";
             this.btWeatherGet.Size = new System.Drawing.Size(112, 26);
             this.btWeatherGet.TabIndex = 1;
@@ -91,10 +105,10 @@ namespace WeatherApp {
             // cbtihou1
             // 
             this.cbtihou1.FormattingEnabled = true;
-            this.cbtihou1.Location = new System.Drawing.Point(21, 113);
-            this.cbtihou1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbtihou1.Location = new System.Drawing.Point(18, 427);
+            this.cbtihou1.Margin = new System.Windows.Forms.Padding(4);
             this.cbtihou1.Name = "cbtihou1";
-            this.cbtihou1.Size = new System.Drawing.Size(290, 24);
+            this.cbtihou1.Size = new System.Drawing.Size(195, 24);
             this.cbtihou1.TabIndex = 2;
             this.cbtihou1.SelectedIndexChanged += new System.EventHandler(this.cbtihou1_SelectedIndexChanged);
             // 
@@ -102,7 +116,8 @@ namespace WeatherApp {
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(15, 77);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(16, 393);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 16);
@@ -112,7 +127,7 @@ namespace WeatherApp {
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 160);
+            this.label2.Location = new System.Drawing.Point(8, 297);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 16);
@@ -121,120 +136,39 @@ namespace WeatherApp {
             // cbtihou2
             // 
             this.cbtihou2.FormattingEnabled = true;
-            this.cbtihou2.Location = new System.Drawing.Point(21, 160);
-            this.cbtihou2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbtihou2.Location = new System.Drawing.Point(223, 427);
+            this.cbtihou2.Margin = new System.Windows.Forms.Padding(4);
             this.cbtihou2.Name = "cbtihou2";
-            this.cbtihou2.Size = new System.Drawing.Size(290, 24);
+            this.cbtihou2.Size = new System.Drawing.Size(195, 24);
             this.cbtihou2.TabIndex = 5;
             // 
-            // label4
+            // areas0
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(18, 208);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 16);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "今日の天気";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(18, 281);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 16);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "明日の天気";
-            // 
-            // todaysWether
-            // 
-            this.todaysWether.Location = new System.Drawing.Point(18, 228);
-            this.todaysWether.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.todaysWether.Name = "todaysWether";
-            this.todaysWether.Size = new System.Drawing.Size(241, 23);
-            this.todaysWether.TabIndex = 8;
-            // 
-            // tomorrowsWether
-            // 
-            this.tomorrowsWether.Location = new System.Drawing.Point(21, 317);
-            this.tomorrowsWether.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tomorrowsWether.Name = "tomorrowsWether";
-            this.tomorrowsWether.Size = new System.Drawing.Size(241, 23);
-            this.tomorrowsWether.TabIndex = 8;
-            // 
-            // tbDate
-            // 
-            this.tbDate.Location = new System.Drawing.Point(97, 9);
-            this.tbDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbDate.Name = "tbDate";
-            this.tbDate.Size = new System.Drawing.Size(199, 23);
-            this.tbDate.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(12, 12);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 16);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "報告日時：";
+            this.areas0.AutoSize = true;
+            this.areas0.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.areas0.ForeColor = System.Drawing.Color.White;
+            this.areas0.Location = new System.Drawing.Point(15, 82);
+            this.areas0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.areas0.Name = "areas0";
+            this.areas0.Size = new System.Drawing.Size(88, 16);
+            this.areas0.TabIndex = 7;
+            this.areas0.Text = "今日の天気";
             // 
             // pbweather
             // 
-            this.pbweather.Location = new System.Drawing.Point(474, 67);
-            this.pbweather.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbweather.Location = new System.Drawing.Point(437, 408);
+            this.pbweather.Margin = new System.Windows.Forms.Padding(4);
             this.pbweather.Name = "pbweather";
-            this.pbweather.Size = new System.Drawing.Size(285, 208);
+            this.pbweather.Size = new System.Drawing.Size(320, 280);
             this.pbweather.TabIndex = 12;
             this.pbweather.TabStop = false;
-            // 
-            // dafWeather
-            // 
-            this.dafWeather.Location = new System.Drawing.Point(303, 317);
-            this.dafWeather.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dafWeather.Name = "dafWeather";
-            this.dafWeather.Size = new System.Drawing.Size(241, 23);
-            this.dafWeather.TabIndex = 13;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(300, 281);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 16);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "明後日の天気";
-            // 
-            // tbWeatherInfo
-            // 
-            this.tbWeatherInfo.Location = new System.Drawing.Point(21, 376);
-            this.tbWeatherInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbWeatherInfo.Multiline = true;
-            this.tbWeatherInfo.Name = "tbWeatherInfo";
-            this.tbWeatherInfo.Size = new System.Drawing.Size(556, 207);
-            this.tbWeatherInfo.TabIndex = 14;
-            // 
-            // 概況
-            // 
-            this.概況.AutoSize = true;
-            this.概況.Location = new System.Drawing.Point(18, 356);
-            this.概況.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.概況.Name = "概況";
-            this.概況.Size = new System.Drawing.Size(40, 16);
-            this.概況.TabIndex = 7;
-            this.概況.Text = "概況";
             // 
             // tommorow3
             // 
             this.tommorow3.AutoSize = true;
             this.tommorow3.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tommorow3.Location = new System.Drawing.Point(584, 386);
+            this.tommorow3.ForeColor = System.Drawing.Color.White;
+            this.tommorow3.Location = new System.Drawing.Point(579, 181);
             this.tommorow3.Name = "tommorow3";
             this.tommorow3.Size = new System.Drawing.Size(23, 21);
             this.tommorow3.TabIndex = 15;
@@ -244,7 +178,8 @@ namespace WeatherApp {
             // 
             this.tommorow4.AutoSize = true;
             this.tommorow4.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tommorow4.Location = new System.Drawing.Point(584, 436);
+            this.tommorow4.ForeColor = System.Drawing.Color.White;
+            this.tommorow4.Location = new System.Drawing.Point(579, 231);
             this.tommorow4.Name = "tommorow4";
             this.tommorow4.Size = new System.Drawing.Size(23, 21);
             this.tommorow4.TabIndex = 15;
@@ -254,7 +189,8 @@ namespace WeatherApp {
             // 
             this.tommorow5.AutoSize = true;
             this.tommorow5.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tommorow5.Location = new System.Drawing.Point(584, 491);
+            this.tommorow5.ForeColor = System.Drawing.Color.White;
+            this.tommorow5.Location = new System.Drawing.Point(579, 286);
             this.tommorow5.Name = "tommorow5";
             this.tommorow5.Size = new System.Drawing.Size(23, 21);
             this.tommorow5.TabIndex = 15;
@@ -264,7 +200,8 @@ namespace WeatherApp {
             // 
             this.tommorow6.AutoSize = true;
             this.tommorow6.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tommorow6.Location = new System.Drawing.Point(584, 546);
+            this.tommorow6.ForeColor = System.Drawing.Color.White;
+            this.tommorow6.Location = new System.Drawing.Point(579, 341);
             this.tommorow6.Name = "tommorow6";
             this.tommorow6.Size = new System.Drawing.Size(23, 21);
             this.tommorow6.TabIndex = 15;
@@ -273,8 +210,8 @@ namespace WeatherApp {
             // tommorow3Max
             // 
             this.tommorow3Max.AutoSize = true;
-            this.tommorow3Max.ForeColor = System.Drawing.Color.Red;
-            this.tommorow3Max.Location = new System.Drawing.Point(691, 390);
+            this.tommorow3Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tommorow3Max.Location = new System.Drawing.Point(686, 185);
             this.tommorow3Max.Name = "tommorow3Max";
             this.tommorow3Max.Size = new System.Drawing.Size(0, 16);
             this.tommorow3Max.TabIndex = 15;
@@ -282,8 +219,8 @@ namespace WeatherApp {
             // tommorow4Max
             // 
             this.tommorow4Max.AutoSize = true;
-            this.tommorow4Max.ForeColor = System.Drawing.Color.Red;
-            this.tommorow4Max.Location = new System.Drawing.Point(691, 441);
+            this.tommorow4Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tommorow4Max.Location = new System.Drawing.Point(686, 236);
             this.tommorow4Max.Name = "tommorow4Max";
             this.tommorow4Max.Size = new System.Drawing.Size(0, 16);
             this.tommorow4Max.TabIndex = 15;
@@ -291,8 +228,8 @@ namespace WeatherApp {
             // tommorow5Max
             // 
             this.tommorow5Max.AutoSize = true;
-            this.tommorow5Max.ForeColor = System.Drawing.Color.Red;
-            this.tommorow5Max.Location = new System.Drawing.Point(691, 495);
+            this.tommorow5Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tommorow5Max.Location = new System.Drawing.Point(686, 290);
             this.tommorow5Max.Name = "tommorow5Max";
             this.tommorow5Max.Size = new System.Drawing.Size(0, 16);
             this.tommorow5Max.TabIndex = 15;
@@ -300,35 +237,17 @@ namespace WeatherApp {
             // tommorow6Max
             // 
             this.tommorow6Max.AutoSize = true;
-            this.tommorow6Max.ForeColor = System.Drawing.Color.Red;
-            this.tommorow6Max.Location = new System.Drawing.Point(691, 550);
+            this.tommorow6Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tommorow6Max.Location = new System.Drawing.Point(686, 345);
             this.tommorow6Max.Name = "tommorow6Max";
             this.tommorow6Max.Size = new System.Drawing.Size(0, 16);
             this.tommorow6Max.TabIndex = 15;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(691, 356);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(24, 16);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "高";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(735, 356);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(24, 16);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "低";
-            // 
             // tommorow6Min
             // 
             this.tommorow6Min.AutoSize = true;
-            this.tommorow6Min.ForeColor = System.Drawing.Color.Blue;
-            this.tommorow6Min.Location = new System.Drawing.Point(735, 550);
+            this.tommorow6Min.ForeColor = System.Drawing.Color.Aqua;
+            this.tommorow6Min.Location = new System.Drawing.Point(730, 345);
             this.tommorow6Min.Name = "tommorow6Min";
             this.tommorow6Min.Size = new System.Drawing.Size(0, 16);
             this.tommorow6Min.TabIndex = 15;
@@ -336,8 +255,8 @@ namespace WeatherApp {
             // tommorow5Min
             // 
             this.tommorow5Min.AutoSize = true;
-            this.tommorow5Min.ForeColor = System.Drawing.Color.Blue;
-            this.tommorow5Min.Location = new System.Drawing.Point(735, 495);
+            this.tommorow5Min.ForeColor = System.Drawing.Color.Aqua;
+            this.tommorow5Min.Location = new System.Drawing.Point(730, 290);
             this.tommorow5Min.Name = "tommorow5Min";
             this.tommorow5Min.Size = new System.Drawing.Size(0, 16);
             this.tommorow5Min.TabIndex = 15;
@@ -345,8 +264,8 @@ namespace WeatherApp {
             // tommorow4Min
             // 
             this.tommorow4Min.AutoSize = true;
-            this.tommorow4Min.ForeColor = System.Drawing.Color.Blue;
-            this.tommorow4Min.Location = new System.Drawing.Point(735, 440);
+            this.tommorow4Min.ForeColor = System.Drawing.Color.Aqua;
+            this.tommorow4Min.Location = new System.Drawing.Point(730, 235);
             this.tommorow4Min.Name = "tommorow4Min";
             this.tommorow4Min.Size = new System.Drawing.Size(0, 16);
             this.tommorow4Min.TabIndex = 15;
@@ -354,23 +273,23 @@ namespace WeatherApp {
             // tommorow3Min
             // 
             this.tommorow3Min.AutoSize = true;
-            this.tommorow3Min.ForeColor = System.Drawing.Color.Blue;
-            this.tommorow3Min.Location = new System.Drawing.Point(735, 390);
+            this.tommorow3Min.ForeColor = System.Drawing.Color.Aqua;
+            this.tommorow3Min.Location = new System.Drawing.Point(730, 185);
             this.tommorow3Min.Name = "tommorow3Min";
             this.tommorow3Min.Size = new System.Drawing.Size(0, 16);
             this.tommorow3Min.TabIndex = 15;
             // 
-            // pbIcon1
+            // areas0pbIcon
             // 
-            this.pbIcon1.Location = new System.Drawing.Point(113, 191);
-            this.pbIcon1.Name = "pbIcon1";
-            this.pbIcon1.Size = new System.Drawing.Size(40, 33);
-            this.pbIcon1.TabIndex = 16;
-            this.pbIcon1.TabStop = false;
+            this.areas0pbIcon.Location = new System.Drawing.Point(118, 65);
+            this.areas0pbIcon.Name = "areas0pbIcon";
+            this.areas0pbIcon.Size = new System.Drawing.Size(40, 33);
+            this.areas0pbIcon.TabIndex = 16;
+            this.areas0pbIcon.TabStop = false;
             // 
             // pbIcon3
             // 
-            this.pbIcon3.Location = new System.Drawing.Point(411, 281);
+            this.pbIcon3.Location = new System.Drawing.Point(655, 125);
             this.pbIcon3.Name = "pbIcon3";
             this.pbIcon3.Size = new System.Drawing.Size(31, 27);
             this.pbIcon3.TabIndex = 16;
@@ -378,7 +297,7 @@ namespace WeatherApp {
             // 
             // pbIcon4
             // 
-            this.pbIcon4.Location = new System.Drawing.Point(660, 380);
+            this.pbIcon4.Location = new System.Drawing.Point(655, 174);
             this.pbIcon4.Name = "pbIcon4";
             this.pbIcon4.Size = new System.Drawing.Size(31, 27);
             this.pbIcon4.TabIndex = 16;
@@ -386,7 +305,7 @@ namespace WeatherApp {
             // 
             // pbIcon5
             // 
-            this.pbIcon5.Location = new System.Drawing.Point(660, 429);
+            this.pbIcon5.Location = new System.Drawing.Point(655, 223);
             this.pbIcon5.Name = "pbIcon5";
             this.pbIcon5.Size = new System.Drawing.Size(31, 27);
             this.pbIcon5.TabIndex = 16;
@@ -394,7 +313,7 @@ namespace WeatherApp {
             // 
             // pbIcon6
             // 
-            this.pbIcon6.Location = new System.Drawing.Point(660, 485);
+            this.pbIcon6.Location = new System.Drawing.Point(655, 279);
             this.pbIcon6.Name = "pbIcon6";
             this.pbIcon6.Size = new System.Drawing.Size(31, 27);
             this.pbIcon6.TabIndex = 16;
@@ -402,7 +321,7 @@ namespace WeatherApp {
             // 
             // pbIcon7
             // 
-            this.pbIcon7.Location = new System.Drawing.Point(660, 540);
+            this.pbIcon7.Location = new System.Drawing.Point(655, 334);
             this.pbIcon7.Name = "pbIcon7";
             this.pbIcon7.Size = new System.Drawing.Size(31, 27);
             this.pbIcon7.TabIndex = 16;
@@ -410,7 +329,7 @@ namespace WeatherApp {
             // 
             // pbIcon2
             // 
-            this.pbIcon2.Location = new System.Drawing.Point(113, 281);
+            this.pbIcon2.Location = new System.Drawing.Point(655, 82);
             this.pbIcon2.Name = "pbIcon2";
             this.pbIcon2.Size = new System.Drawing.Size(31, 27);
             this.pbIcon2.TabIndex = 16;
@@ -419,8 +338,8 @@ namespace WeatherApp {
             // tommorowMax
             // 
             this.tommorowMax.AutoSize = true;
-            this.tommorowMax.ForeColor = System.Drawing.Color.Red;
-            this.tommorowMax.Location = new System.Drawing.Point(171, 292);
+            this.tommorowMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tommorowMax.Location = new System.Drawing.Point(686, 93);
             this.tommorowMax.Name = "tommorowMax";
             this.tommorowMax.Size = new System.Drawing.Size(0, 16);
             this.tommorowMax.TabIndex = 17;
@@ -428,26 +347,26 @@ namespace WeatherApp {
             // tommorow2Max
             // 
             this.tommorow2Max.AutoSize = true;
-            this.tommorow2Max.ForeColor = System.Drawing.Color.Red;
-            this.tommorow2Max.Location = new System.Drawing.Point(477, 292);
+            this.tommorow2Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tommorow2Max.Location = new System.Drawing.Point(686, 133);
             this.tommorow2Max.Name = "tommorow2Max";
             this.tommorow2Max.Size = new System.Drawing.Size(0, 16);
             this.tommorow2Max.TabIndex = 17;
             // 
-            // todayMax
+            // areas0Max
             // 
-            this.todayMax.AutoSize = true;
-            this.todayMax.Location = new System.Drawing.Point(167, 208);
-            this.todayMax.Name = "todayMax";
-            this.todayMax.Size = new System.Drawing.Size(62, 16);
-            this.todayMax.TabIndex = 18;
-            this.todayMax.Text = "label10";
+            this.areas0Max.AutoSize = true;
+            this.areas0Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.areas0Max.Location = new System.Drawing.Point(164, 82);
+            this.areas0Max.Name = "areas0Max";
+            this.areas0Max.Size = new System.Drawing.Size(0, 16);
+            this.areas0Max.TabIndex = 18;
             // 
             // tommorowMin
             // 
             this.tommorowMin.AutoSize = true;
-            this.tommorowMin.ForeColor = System.Drawing.Color.Blue;
-            this.tommorowMin.Location = new System.Drawing.Point(229, 292);
+            this.tommorowMin.ForeColor = System.Drawing.Color.Aqua;
+            this.tommorowMin.Location = new System.Drawing.Point(730, 92);
             this.tommorowMin.Name = "tommorowMin";
             this.tommorowMin.Size = new System.Drawing.Size(0, 16);
             this.tommorowMin.TabIndex = 17;
@@ -455,28 +374,256 @@ namespace WeatherApp {
             // tommorow2Min
             // 
             this.tommorow2Min.AutoSize = true;
-            this.tommorow2Min.ForeColor = System.Drawing.Color.Blue;
-            this.tommorow2Min.Location = new System.Drawing.Point(525, 292);
+            this.tommorow2Min.ForeColor = System.Drawing.Color.Aqua;
+            this.tommorow2Min.Location = new System.Drawing.Point(730, 133);
             this.tommorow2Min.Name = "tommorow2Min";
             this.tommorow2Min.Size = new System.Drawing.Size(0, 16);
             this.tommorow2Min.TabIndex = 17;
             // 
-            // todayMin
+            // areas0Min
             // 
-            this.todayMin.AutoSize = true;
-            this.todayMin.Location = new System.Drawing.Point(234, 208);
-            this.todayMin.Name = "todayMin";
-            this.todayMin.Size = new System.Drawing.Size(62, 16);
-            this.todayMin.TabIndex = 18;
-            this.todayMin.Text = "label10";
+            this.areas0Min.AutoSize = true;
+            this.areas0Min.ForeColor = System.Drawing.Color.White;
+            this.areas0Min.Location = new System.Drawing.Point(215, 82);
+            this.areas0Min.Name = "areas0Min";
+            this.areas0Min.Size = new System.Drawing.Size(0, 16);
+            this.areas0Min.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(579, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 21);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "/";
+            // 
+            // tommorow2
+            // 
+            this.tommorow2.AutoSize = true;
+            this.tommorow2.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tommorow2.ForeColor = System.Drawing.Color.White;
+            this.tommorow2.Location = new System.Drawing.Point(579, 133);
+            this.tommorow2.Name = "tommorow2";
+            this.tommorow2.Size = new System.Drawing.Size(23, 21);
+            this.tommorow2.TabIndex = 15;
+            this.tommorow2.Text = "/";
+            // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelDate.ForeColor = System.Drawing.Color.White;
+            this.labelDate.Location = new System.Drawing.Point(4, 9);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(149, 48);
+            this.labelDate.TabIndex = 19;
+            this.labelDate.Text = "label3";
+            // 
+            // tbWeatherInfo
+            // 
+            this.tbWeatherInfo.Location = new System.Drawing.Point(17, 459);
+            this.tbWeatherInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.tbWeatherInfo.Multiline = true;
+            this.tbWeatherInfo.Name = "tbWeatherInfo";
+            this.tbWeatherInfo.Size = new System.Drawing.Size(412, 229);
+            this.tbWeatherInfo.TabIndex = 14;
+            // 
+            // tommorow
+            // 
+            this.tommorow.AutoSize = true;
+            this.tommorow.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tommorow.ForeColor = System.Drawing.Color.White;
+            this.tommorow.Location = new System.Drawing.Point(579, 88);
+            this.tommorow.Name = "tommorow";
+            this.tommorow.Size = new System.Drawing.Size(23, 21);
+            this.tommorow.TabIndex = 15;
+            this.tommorow.Text = "/";
+            // 
+            // areas1
+            // 
+            this.areas1.AutoSize = true;
+            this.areas1.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.areas1.ForeColor = System.Drawing.Color.White;
+            this.areas1.Location = new System.Drawing.Point(14, 162);
+            this.areas1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.areas1.Name = "areas1";
+            this.areas1.Size = new System.Drawing.Size(88, 16);
+            this.areas1.TabIndex = 7;
+            this.areas1.Text = "今日の天気";
+            // 
+            // areas2
+            // 
+            this.areas2.AutoSize = true;
+            this.areas2.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.areas2.ForeColor = System.Drawing.Color.White;
+            this.areas2.Location = new System.Drawing.Point(14, 243);
+            this.areas2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.areas2.Name = "areas2";
+            this.areas2.Size = new System.Drawing.Size(88, 16);
+            this.areas2.TabIndex = 7;
+            this.areas2.Text = "今日の天気";
+            // 
+            // areas3
+            // 
+            this.areas3.AutoSize = true;
+            this.areas3.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.areas3.ForeColor = System.Drawing.Color.White;
+            this.areas3.Location = new System.Drawing.Point(15, 332);
+            this.areas3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.areas3.Name = "areas3";
+            this.areas3.Size = new System.Drawing.Size(88, 16);
+            this.areas3.TabIndex = 7;
+            this.areas3.Text = "今日の天気";
+            // 
+            // areas0Weather
+            // 
+            this.areas0Weather.AutoSize = true;
+            this.areas0Weather.ForeColor = System.Drawing.Color.White;
+            this.areas0Weather.Location = new System.Drawing.Point(16, 108);
+            this.areas0Weather.Name = "areas0Weather";
+            this.areas0Weather.Size = new System.Drawing.Size(0, 16);
+            this.areas0Weather.TabIndex = 20;
+            // 
+            // areas1Weather
+            // 
+            this.areas1Weather.AutoSize = true;
+            this.areas1Weather.ForeColor = System.Drawing.Color.White;
+            this.areas1Weather.Location = new System.Drawing.Point(17, 193);
+            this.areas1Weather.Name = "areas1Weather";
+            this.areas1Weather.Size = new System.Drawing.Size(0, 16);
+            this.areas1Weather.TabIndex = 20;
+            // 
+            // areas2Max
+            // 
+            this.areas2Max.AutoSize = true;
+            this.areas2Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.areas2Max.Location = new System.Drawing.Point(164, 256);
+            this.areas2Max.Name = "areas2Max";
+            this.areas2Max.Size = new System.Drawing.Size(0, 16);
+            this.areas2Max.TabIndex = 20;
+            // 
+            // areas3Weather
+            // 
+            this.areas3Weather.AutoSize = true;
+            this.areas3Weather.ForeColor = System.Drawing.Color.White;
+            this.areas3Weather.Location = new System.Drawing.Point(16, 366);
+            this.areas3Weather.Name = "areas3Weather";
+            this.areas3Weather.Size = new System.Drawing.Size(0, 16);
+            this.areas3Weather.TabIndex = 20;
+            // 
+            // areas1Max
+            // 
+            this.areas1Max.AutoSize = true;
+            this.areas1Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.areas1Max.Location = new System.Drawing.Point(164, 162);
+            this.areas1Max.Name = "areas1Max";
+            this.areas1Max.Size = new System.Drawing.Size(0, 16);
+            this.areas1Max.TabIndex = 20;
+            // 
+            // areas1Min
+            // 
+            this.areas1Min.AutoSize = true;
+            this.areas1Min.ForeColor = System.Drawing.Color.White;
+            this.areas1Min.Location = new System.Drawing.Point(215, 162);
+            this.areas1Min.Name = "areas1Min";
+            this.areas1Min.Size = new System.Drawing.Size(0, 16);
+            this.areas1Min.TabIndex = 20;
+            // 
+            // areas2Min
+            // 
+            this.areas2Min.AutoSize = true;
+            this.areas2Min.ForeColor = System.Drawing.Color.White;
+            this.areas2Min.Location = new System.Drawing.Point(215, 256);
+            this.areas2Min.Name = "areas2Min";
+            this.areas2Min.Size = new System.Drawing.Size(0, 16);
+            this.areas2Min.TabIndex = 20;
+            // 
+            // areas2Weather
+            // 
+            this.areas2Weather.AutoSize = true;
+            this.areas2Weather.ForeColor = System.Drawing.Color.White;
+            this.areas2Weather.Location = new System.Drawing.Point(15, 282);
+            this.areas2Weather.Name = "areas2Weather";
+            this.areas2Weather.Size = new System.Drawing.Size(0, 16);
+            this.areas2Weather.TabIndex = 20;
+            // 
+            // areas3Max
+            // 
+            this.areas3Max.AutoSize = true;
+            this.areas3Max.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.areas3Max.Location = new System.Drawing.Point(164, 338);
+            this.areas3Max.Name = "areas3Max";
+            this.areas3Max.Size = new System.Drawing.Size(0, 16);
+            this.areas3Max.TabIndex = 20;
+            // 
+            // areas3Min
+            // 
+            this.areas3Min.AutoSize = true;
+            this.areas3Min.ForeColor = System.Drawing.Color.White;
+            this.areas3Min.Location = new System.Drawing.Point(215, 338);
+            this.areas3Min.Name = "areas3Min";
+            this.areas3Min.Size = new System.Drawing.Size(0, 16);
+            this.areas3Min.TabIndex = 20;
+            // 
+            // labelarea
+            // 
+            this.labelarea.AutoSize = true;
+            this.labelarea.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelarea.ForeColor = System.Drawing.Color.White;
+            this.labelarea.Location = new System.Drawing.Point(227, 9);
+            this.labelarea.Name = "labelarea";
+            this.labelarea.Size = new System.Drawing.Size(149, 48);
+            this.labelarea.TabIndex = 21;
+            this.labelarea.Text = "label3";
+            // 
+            // areas1pbIcon
+            // 
+            this.areas1pbIcon.Location = new System.Drawing.Point(118, 145);
+            this.areas1pbIcon.Name = "areas1pbIcon";
+            this.areas1pbIcon.Size = new System.Drawing.Size(40, 33);
+            this.areas1pbIcon.TabIndex = 16;
+            this.areas1pbIcon.TabStop = false;
+            // 
+            // areas2pbIcon
+            // 
+            this.areas2pbIcon.Location = new System.Drawing.Point(118, 231);
+            this.areas2pbIcon.Name = "areas2pbIcon";
+            this.areas2pbIcon.Size = new System.Drawing.Size(40, 33);
+            this.areas2pbIcon.TabIndex = 16;
+            this.areas2pbIcon.TabStop = false;
+            // 
+            // areas3pbIcon
+            // 
+            this.areas3pbIcon.Location = new System.Drawing.Point(118, 321);
+            this.areas3pbIcon.Name = "areas3pbIcon";
+            this.areas3pbIcon.Size = new System.Drawing.Size(40, 33);
+            this.areas3pbIcon.TabIndex = 16;
+            this.areas3pbIcon.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 600);
-            this.Controls.Add(this.todayMin);
-            this.Controls.Add(this.todayMax);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(777, 699);
+            this.Controls.Add(this.labelarea);
+            this.Controls.Add(this.areas3Max);
+            this.Controls.Add(this.areas3Min);
+            this.Controls.Add(this.areas3Weather);
+            this.Controls.Add(this.areas2Weather);
+            this.Controls.Add(this.areas2Max);
+            this.Controls.Add(this.areas2Min);
+            this.Controls.Add(this.areas1Min);
+            this.Controls.Add(this.areas1Max);
+            this.Controls.Add(this.areas1Weather);
+            this.Controls.Add(this.areas0Weather);
+            this.Controls.Add(this.labelDate);
+            this.Controls.Add(this.areas0Min);
+            this.Controls.Add(this.areas0Max);
             this.Controls.Add(this.tommorow2Min);
             this.Controls.Add(this.tommorow2Max);
             this.Controls.Add(this.tommorowMin);
@@ -487,7 +634,10 @@ namespace WeatherApp {
             this.Controls.Add(this.pbIcon4);
             this.Controls.Add(this.pbIcon3);
             this.Controls.Add(this.pbIcon2);
-            this.Controls.Add(this.pbIcon1);
+            this.Controls.Add(this.areas1pbIcon);
+            this.Controls.Add(this.areas3pbIcon);
+            this.Controls.Add(this.areas2pbIcon);
+            this.Controls.Add(this.areas0pbIcon);
             this.Controls.Add(this.tommorow3Min);
             this.Controls.Add(this.tommorow4Min);
             this.Controls.Add(this.tommorow5Min);
@@ -496,40 +646,41 @@ namespace WeatherApp {
             this.Controls.Add(this.tommorow6);
             this.Controls.Add(this.tommorow5Max);
             this.Controls.Add(this.tommorow5);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.tommorow4Max);
             this.Controls.Add(this.tommorow4);
             this.Controls.Add(this.tommorow3Max);
+            this.Controls.Add(this.tommorow);
+            this.Controls.Add(this.tommorow2);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.tommorow3);
             this.Controls.Add(this.tbWeatherInfo);
-            this.Controls.Add(this.dafWeather);
             this.Controls.Add(this.pbweather);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbDate);
-            this.Controls.Add(this.tomorrowsWether);
-            this.Controls.Add(this.todaysWether);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.概況);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.areas3);
+            this.Controls.Add(this.areas2);
+            this.Controls.Add(this.areas1);
+            this.Controls.Add(this.areas0);
             this.Controls.Add(this.cbtihou2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbtihou1);
             this.Controls.Add(this.btWeatherGet);
             this.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbweather)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas0pbIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas1pbIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas2pbIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areas3pbIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -541,17 +692,8 @@ namespace WeatherApp {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbtihou2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox todaysWether;
-        private System.Windows.Forms.TextBox tomorrowsWether;
-        private System.Windows.Forms.TextBox tbDate;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label areas0;
         private System.Windows.Forms.PictureBox pbweather;
-        private System.Windows.Forms.TextBox dafWeather;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbWeatherInfo;
-        private System.Windows.Forms.Label 概況;
         private System.Windows.Forms.Label tommorow3;
         private System.Windows.Forms.Label tommorow4;
         private System.Windows.Forms.Label tommorow5;
@@ -560,13 +702,11 @@ namespace WeatherApp {
         private System.Windows.Forms.Label tommorow4Max;
         private System.Windows.Forms.Label tommorow5Max;
         private System.Windows.Forms.Label tommorow6Max;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label tommorow6Min;
         private System.Windows.Forms.Label tommorow5Min;
         private System.Windows.Forms.Label tommorow4Min;
         private System.Windows.Forms.Label tommorow3Min;
-        private System.Windows.Forms.PictureBox pbIcon1;
+        private System.Windows.Forms.PictureBox areas0pbIcon;
         private System.Windows.Forms.PictureBox pbIcon3;
         private System.Windows.Forms.PictureBox pbIcon4;
         private System.Windows.Forms.PictureBox pbIcon5;
@@ -575,10 +715,32 @@ namespace WeatherApp {
         private System.Windows.Forms.PictureBox pbIcon2;
         private System.Windows.Forms.Label tommorowMax;
         private System.Windows.Forms.Label tommorow2Max;
-        private System.Windows.Forms.Label todayMax;
+        private System.Windows.Forms.Label areas0Max;
         private System.Windows.Forms.Label tommorowMin;
         private System.Windows.Forms.Label tommorow2Min;
-        private System.Windows.Forms.Label todayMin;
+        private System.Windows.Forms.Label areas0Min;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label tommorow2;
+        private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.TextBox tbWeatherInfo;
+        private System.Windows.Forms.Label tommorow;
+        private System.Windows.Forms.Label areas1;
+        private System.Windows.Forms.Label areas2;
+        private System.Windows.Forms.Label areas3;
+        private System.Windows.Forms.Label areas0Weather;
+        private System.Windows.Forms.Label areas1Weather;
+        private System.Windows.Forms.Label areas2Max;
+        private System.Windows.Forms.Label areas3Weather;
+        private System.Windows.Forms.Label areas1Max;
+        private System.Windows.Forms.Label areas1Min;
+        private System.Windows.Forms.Label areas2Min;
+        private System.Windows.Forms.Label areas2Weather;
+        private System.Windows.Forms.Label areas3Max;
+        private System.Windows.Forms.Label areas3Min;
+        private System.Windows.Forms.Label labelarea;
+        private System.Windows.Forms.PictureBox areas1pbIcon;
+        private System.Windows.Forms.PictureBox areas2pbIcon;
+        private System.Windows.Forms.PictureBox areas3pbIcon;
     }
 }
 
