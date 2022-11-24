@@ -12,8 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static WeatherApp.jma;
 
-//salescalcで出来る
-
 namespace WeatherApp {
     public partial class Form1 : Form {
         AreaCode areas;
@@ -26,9 +24,9 @@ namespace WeatherApp {
             cbtihou1.Items.Add("東海地方");
             cbtihou1.Items.Add("北陸地方");
             cbtihou1.Items.Add("近畿地方");
-            cbtihou1.Items.Add("中国地方（山形県を除く）地方");
+            cbtihou1.Items.Add("中国地方（山口県を除く）地方");
             cbtihou1.Items.Add("四国地方");
-            cbtihou1.Items.Add("九州北部(山形県を含む)地方");
+            cbtihou1.Items.Add("九州北部(山口県を含む)地方");
             cbtihou1.Items.Add("九州南部・奄美地方");
             cbtihou1.Items.Add("沖縄地方");
 
@@ -47,11 +45,10 @@ namespace WeatherApp {
         private void getWeather(WebClient wc) {
             var dString = wc.DownloadString("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/" + areacode + ".json");
             var weather = wc.DownloadString("https://www.jma.go.jp/bosai/forecast/data/forecast/" + areacode + ".json");
-            var wearher_map = wc.DownloadString("https://www.jma.go.jp/bosai/weather_map/data/list.json");
+
 
             //jsonデータの取得
             var json = JsonConvert.DeserializeObject<Rootobject2>(dString);
-            var json_wearher_map = JsonConvert.DeserializeObject<Rootobject3>(wearher_map);
             var json_weather = JsonConvert.DeserializeObject<Class1[]>(weather);
             //↓アイコン変数
             var icon_code = json_weather[0].timeSeries[0].areas[0].weatherCodes[0];
@@ -159,9 +156,8 @@ namespace WeatherApp {
             tbWeatherInfo.ResetText();
             tbWeatherInfo.Text += json.text;
 
-            //ピクチャーボックス
-            pbweather.ImageLocation = "https://www.jma.go.jp/bosai/weather_map/data/png/" + json_wearher_map.near.ft24[0];
-            pbweather.SizeMode = PictureBoxSizeMode.StretchImage;
+            get_weathermap(wc);
+
         }
 
         private void cbtihou1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -175,7 +171,6 @@ namespace WeatherApp {
                     cbtihou2.Items.Add("宗谷地方");
                     cbtihou2.Items.Add("上川・留萌地方");
                     cbtihou2.Items.Add("網走・北見・紋別地方");
-                    cbtihou2.Items.Add("十勝地方");
                     cbtihou2.Items.Add("釧路・根室地方");
                     cbtihou2.Items.Add("胆振・日高地方");
                     cbtihou2.Items.Add("石狩・空知・後志地方");
@@ -242,8 +237,7 @@ namespace WeatherApp {
                     break;
                 case 9:
                     cbtihou2.Items.Add("宮崎県");
-                    cbtihou2.Items.Add("奄美地方");
-                    cbtihou2.Items.Add("鹿児島県（奄美地方除く）");
+                    cbtihou2.Items.Add("鹿児島県");
                     break;
                 case 10:
                     cbtihou2.Items.Add("沖縄本島地方");
@@ -254,6 +248,7 @@ namespace WeatherApp {
                 default:
                     break;
             }
+            btWeatherGet_enabled_check();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -261,8 +256,34 @@ namespace WeatherApp {
                 Encoding = Encoding.UTF8
             };
             areacode = "130000";
+            cbtihou1.SelectedIndex = 2;
+            cbtihou2.SelectedIndex = 5;
+            labelarea.Text = cbtihou2.SelectedIndex.ToString();
             getWeather(wc);
+            btWeatherGet_enabled_check();
+        }
 
+        private void btWeatherGet_enabled_check() {
+            if (cbtihou2.SelectedIndex == -1)
+                btWeatherGet.Enabled = false;
+            if (cbtihou2.SelectedIndex != -1)
+                btWeatherGet.Enabled = true;
+        }
+
+        private void cbtihou2_SelectedIndexChanged(object sender, EventArgs e) {
+            btWeatherGet_enabled_check();
+        }
+
+        private void get_weathermap(WebClient wc) {
+            var wearher_map = wc.DownloadString("https://www.jma.go.jp/bosai/weather_map/data/list.json");
+            var json_wearher_map = JsonConvert.DeserializeObject<Rootobject3>(wearher_map);
+            //ピクチャーボックス
+
+            pbweather.ImageLocation = "https://www.jma.go.jp/bosai/weather_map/data/png/" + json_wearher_map.near.ft24[0];
+
+
+            pbweather.SizeMode = PictureBoxSizeMode.StretchImage;
         }
     }
+
 }
