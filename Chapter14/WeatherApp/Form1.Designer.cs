@@ -77,6 +77,7 @@ namespace WeatherApp {
             this.areas1pbIcon = new System.Windows.Forms.PictureBox();
             this.areas2pbIcon = new System.Windows.Forms.PictureBox();
             this.areas3pbIcon = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbweather)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.areas0pbIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon3)).BeginInit();
@@ -148,7 +149,7 @@ namespace WeatherApp {
             // 
             this.areas0.AutoSize = true;
             this.areas0.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.areas0.ForeColor = System.Drawing.Color.White;
+            this.areas0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.areas0.Location = new System.Drawing.Point(15, 80);
             this.areas0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.areas0.Name = "areas0";
@@ -452,7 +453,7 @@ namespace WeatherApp {
             // 
             this.areas1.AutoSize = true;
             this.areas1.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.areas1.ForeColor = System.Drawing.Color.White;
+            this.areas1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.areas1.Location = new System.Drawing.Point(15, 160);
             this.areas1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.areas1.Name = "areas1";
@@ -464,7 +465,7 @@ namespace WeatherApp {
             // 
             this.areas2.AutoSize = true;
             this.areas2.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.areas2.ForeColor = System.Drawing.Color.White;
+            this.areas2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.areas2.Location = new System.Drawing.Point(15, 240);
             this.areas2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.areas2.Name = "areas2";
@@ -476,7 +477,7 @@ namespace WeatherApp {
             // 
             this.areas3.AutoSize = true;
             this.areas3.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.areas3.ForeColor = System.Drawing.Color.White;
+            this.areas3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.areas3.Location = new System.Drawing.Point(15, 320);
             this.areas3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.areas3.Name = "areas3";
@@ -615,6 +616,16 @@ namespace WeatherApp {
             this.areas3pbIcon.TabIndex = 16;
             this.areas3pbIcon.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(677, 403);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 26);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "天気図";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -622,6 +633,7 @@ namespace WeatherApp {
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(777, 721);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelarea);
             this.Controls.Add(this.areas3Max);
             this.Controls.Add(this.areas3Min);
@@ -679,7 +691,7 @@ namespace WeatherApp {
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "天気予報";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbweather)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.areas0pbIcon)).EndInit();
@@ -751,6 +763,7 @@ namespace WeatherApp {
         private System.Windows.Forms.PictureBox areas1pbIcon;
         private System.Windows.Forms.PictureBox areas2pbIcon;
         private System.Windows.Forms.PictureBox areas3pbIcon;
+        private System.Windows.Forms.Button button1;
     }
 }
 
