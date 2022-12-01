@@ -152,7 +152,7 @@ namespace WeatherApp {
                 pbIcon7.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
-                //概況
+                //概況a
                 tbWeatherInfo.ResetText();
                 tbWeatherInfo.Text += json.text;
 
